@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detectra – Jasa Koreksi Tugas Online</title>
+<link rel="icon" href="logo detectra.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20rx%3D%2211%22%20fill%3D%22%233B82F6%22/%3E%3Cpath%20d%3D%22M11%2021l6%206%2012-13%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%229%22%20r%3D%224.5%22%20fill%3D%22%23F59E0B%22/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+:root{--bs-primary:#3B82F6;--bs-primary-rgb:59,130,246;--amber:#F59E0B;--r:16px}
+[data-bs-theme=light]{--bs-body-bg:#F9FAFB;--bs-body-color:#111827;--card:#fff}
+[data-bs-theme=dark]{--bs-body-bg:#0f172a;--bs-body-color:#e5e7eb;--card:#1e293b}
+body{font-family:system-ui,-apple-system,sans-serif;scroll-padding-top:70px}
+h1,h2,h3,h4,h5,.brand{font-family:Poppins,system-ui,sans-serif}
+section{padding:72px 0}
+.btn-primary{--bs-btn-bg:#3B82F6;--bs-btn-border-color:#3B82F6;--bs-btn-hover-bg:#2563EB;--bs-btn-hover-border-color:#2563EB}
+.btn-amber{background:var(--amber);color:#111827;border:0;font-weight:600;transition:.2s}
+.btn-amber:hover{background:#3B82F6;color:#fff;transform:translateY(-2px)}
+.btn,.form-control,.form-select{border-radius:12px}
+.navbar{backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bs-body-bg) 85%,transparent)}
+.brand{font-weight:700;color:#3B82F6!important}
+.hero{background:radial-gradient(circle at 85% 10%,rgba(245,158,11,.18),transparent 40%),radial-gradient(circle at 10% 90%,rgba(59,130,246,.18),transparent 45%);padding:96px 0 72px}
+.hero h1{font-weight:700;font-size:clamp(2rem,5vw,3.4rem);line-height:1.15}
+.mark{background:linear-gradient(transparent 62%,rgba(245,158,11,.5) 0);}
+.cardx{background:var(--card);border-radius:var(--r);box-shadow:0 6px 24px rgba(0,0,0,.07);padding:24px;height:100%;transition:transform .25s,box-shadow .25s;border:1px solid rgba(128,128,128,.12)}
+.cardx:hover{transform:scale(1.03);box-shadow:0 12px 32px rgba(59,130,246,.18)}
+.ico{width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);color:#3B82F6;display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px}
+.step{width:56px;height:56px;border-radius:50%;background:var(--amber);color:#111827;font:700 1.3rem Poppins;display:grid;place-items:center;margin:0 auto 12px}
+.price-card.pop{border:2px solid #3B82F6}
+.price{font:700 2rem Poppins}
+.price s{font-size:1rem;opacity:.5;font-weight:400}
+.reveal{opacity:0;transform:translateY(20px);transition:.6s}
+.reveal.in{opacity:1;transform:none}
+.wa-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:1030;transition:.2s}
+.wa-float:hover{transform:scale(1.1);color:#fff}
+.est{background:rgba(59,130,246,.1);border-radius:12px;padding:14px 16px}
+.accordion-item{border-radius:12px!important;overflow:hidden;margin-bottom:10px;border:1px solid rgba(128,128,128,.2)}
+.logo-mark svg,.logo-img{width:36px;height:36px;display:block}
+footer{background:#111827;color:#cbd5e1}
+footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
+.logo-nav,.logo-foot{width:auto;object-fit:contain}[data-bs-theme=dark] .logo-nav,.logo-foot{background:#fff;border-radius:10px;padding:3px 8px}
+.testi-ind button{background-color:#3B82F6!important;width:10px!important;height:10px!important;border-radius:50%;border:0!important;margin:0 4px!important;opacity:.3}.testi-ind .active{opacity:1;background-color:#F59E0B!important}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top border-bottom">
+ <div class="container">
+  <a class="navbar-brand" href="#home"><img class="logo-nav" src="logo%20detectra.png" alt="Detectra" height="38"></a>
+  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="nav">
+   <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+    <li class="nav-item"><a class="nav-link" href="#home">Beranda</a></li>
+    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+    <li class="nav-item"><a class="nav-link" href="#harga">Harga</a></li>
+    <li class="nav-item"><a class="nav-link" href="#lacak">Lacak</a></li>
+    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+    <li class="nav-item ms-lg-2"><button id="themeBtn" class="btn btn-sm btn-outline-secondary" aria-label="Mode gelap"><i class="bi bi-moon-stars"></i></button></li>
+    <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-amber btn-sm px-3" href="#order">Order Sekarang</a></li>
+   </ul>
+  </div>
+ </div>
+</nav>
+
+<header id="home" class="hero">
+ <div class="container">
+  <div class="row align-items-center g-5">
+   <div class="col-lg-7">
+    <span class="badge rounded-pill text-bg-warning mb-3">Untuk siswa SMP, SMA &amp; mahasiswa</span>
+    <h1>Tugasmu dikoreksi korektor profesional, <span class="mark">sebelum dikumpulkan.</span></h1>
+    <p class="lead my-4">Kirim PR, esai, makalah, atau jurnal. Terima catatan revisi, penilaian, dan saran perbaikan yang jelas dan bisa langsung kamu pakai.</p>
+    <a href="#order" class="btn btn-amber btn-lg px-4 me-2">Order Sekarang</a>
+    <a href="#harga" class="btn btn-outline-primary btn-lg px-4">Lihat Harga</a>
+   </div>
+   <div class="col-lg-5">
+    <div class="cardx reveal">
+     <div class="d-flex justify-content-between mb-2"><strong>Esai Bahasa Indonesia</strong><span class="badge text-bg-success">Selesai</span></div>
+     <p class="small text-secondary mb-3">Catatan korektor:</p>
+     <div class="small mb-2"><i class="bi bi-x-circle text-danger"></i> Paragraf 2 belum punya kalimat utama.</div>
+     <div class="small mb-2"><i class="bi bi-check-circle text-success"></i> Argumen di paragraf 3 sudah kuat.</div>
+     <div class="small mb-3"><i class="bi bi-pencil text-primary"></i> Ganti "di mana" dengan "tempat" pada kalimat 5.</div>
+     <div class="est d-flex justify-content-between"><span>Nilai</span><strong>82 / 100</strong></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</header>
+
+<section>
+ <div class="container">
+  <h2 class="text-center fw-bold mb-5 reveal">Kenapa pilih Detectra?</h2>
+  <div class="row g-4">
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-mortarboard"></i></div><h5>Korektor berpengalaman</h5><p class="small mb-0">Dikoreksi orang yang paham standar tugas tiap jenjang.</p></div></div>
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-lightning-charge"></i></div><h5>Cepat</h5><p class="small mb-0">Mulai dari 6 jam untuk tugas singkat.</p></div></div>
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-wallet2"></i></div><h5>Harga pelajar</h5><p class="small mb-0">Mulai Rp 15.000, tanpa biaya tersembunyi.</p></div></div>
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-shield-lock"></i></div><h5>Tugasmu aman</h5><p class="small mb-0">File hanya dipakai untuk koreksi dan tidak dibagikan.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="bg-body-secondary">
+ <div class="container">
+  <h2 class="text-center fw-bold mb-5 reveal">Cara kerja</h2>
+  <div class="row g-4 text-center">
+   <div class="col-md-4 reveal"><div class="step">1</div><h5>Kirim tugas</h5><p>Isi form order dan pilih paket.</p></div>
+   <div class="col-md-4 reveal"><div class="step">2</div><h5>Kami koreksi</h5><p>Korektor memeriksa dan menulis catatan.</p></div>
+   <div class="col-md-4 reveal"><div class="step">3</div><h5>Terima hasil</h5><p>Hasil dikirim lewat WhatsApp atau email.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="layanan">
+ <div class="container">
+  <h2 class="text-center fw-bold mb-2 reveal">Layanan</h2>
+  <p class="text-center text-secondary mb-5">Pilih sesuai jenjangmu.</p>
+  <div class="row g-4" id="svcGrid"></div>
+ </div>
+</section>
+
+<section id="harga" class="bg-body-secondary">
+ <div class="container">
+  <h2 class="text-center fw-bold mb-3 reveal">Harga</h2>
+  <div class="d-flex justify-content-center align-items-center gap-3 mb-4 flex-wrap">
+   <ul class="nav nav-pills" id="lvlTabs"></ul>
+   <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="disc"><label class="form-check-label" for="disc">Diskon pelajar 20%</label></div>
+  </div>
+  <div class="row g-4 justify-content-center" id="priceGrid"></div>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <h2 class="text-center fw-bold mb-5 reveal">Kata mereka</h2>
+  <div id="testiCar" class="carousel slide reveal" data-bs-ride="carousel" data-bs-interval="5000">
+   <div class="carousel-inner p-3">
+    <div class="carousel-item active"><div class="cardx text-center mx-auto" style="max-width:640px;padding:32px 28px"><div class="text-warning mb-2" aria-label="Bintang 5 dari 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="fs-5 mb-3">"Esai bahasa Inggrisku jadi jauh lebih rapi. Catatannya gampang dipahami."</p><strong>Alya</strong><div class="small text-secondary">Siswa SMA, Solo</div></div></div>
+    <div class="carousel-item"><div class="cardx text-center mx-auto" style="max-width:640px;padding:32px 28px"><div class="text-warning mb-2" aria-label="Bintang 5 dari 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="fs-5 mb-3">"Laporan praktikum dicek sampai struktur. Sebelum sidang jadi lebih tenang."</p><strong>Rizky</strong><div class="small text-secondary">Mahasiswa Teknik</div></div></div>
+    <div class="carousel-item"><div class="cardx text-center mx-auto" style="max-width:640px;padding:32px 28px"><div class="text-warning mb-2" aria-label="Bintang 5 dari 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="fs-5 mb-3">"Anak saya jadi paham kesalahannya sendiri, bukan sekadar dibenarkan."</p><strong>Bu Dewi</strong><div class="small text-secondary">Orang tua siswa SMP</div></div></div>
+    <div class="carousel-item"><div class="cardx text-center mx-auto" style="max-width:640px;padding:32px 28px"><div class="text-warning mb-2" aria-label="Bintang 5 dari 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="fs-5 mb-3">"PR Bahasa Indonesia dikoreksi cepat, dan komentarnya bikin aku ngerti letak salahnya."</p><strong>Naufal</strong><div class="small text-secondary">Siswa SMP, Karanganyar</div></div></div>
+    <div class="carousel-item"><div class="cardx text-center mx-auto" style="max-width:640px;padding:32px 28px"><div class="text-warning mb-2" aria-label="Bintang 5 dari 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="fs-5 mb-3">"Saran revisi di paket Premium membantu banget buat merapikan abstrak jurnalku."</p><strong>Intan</strong><div class="small text-secondary">Mahasiswa Psikologi</div></div></div>
+   </div>
+   <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+    <button class="btn btn-outline-primary btn-sm rounded-circle" type="button" data-bs-target="#testiCar" data-bs-slide="prev" aria-label="Sebelumnya"><i class="bi bi-chevron-left"></i></button>
+    <div class="carousel-indicators testi-ind position-static m-0"><button type="button" data-bs-target="#testiCar" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Testimoni 1"></button><button type="button" data-bs-target="#testiCar" data-bs-slide-to="1" aria-label="Testimoni 2"></button><button type="button" data-bs-target="#testiCar" data-bs-slide-to="2" aria-label="Testimoni 3"></button><button type="button" data-bs-target="#testiCar" data-bs-slide-to="3" aria-label="Testimoni 4"></button><button type="button" data-bs-target="#testiCar" data-bs-slide-to="4" aria-label="Testimoni 5"></button></div>
+    <button class="btn btn-outline-primary btn-sm rounded-circle" type="button" data-bs-target="#testiCar" data-bs-slide="next" aria-label="Berikutnya"><i class="bi bi-chevron-right"></i></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="order" class="bg-body-secondary">
+ <div class="container" style="max-width:760px">
+  <h2 class="text-center fw-bold mb-4">Order koreksi</h2>
+  <form id="orderForm" class="cardx" novalidate>
+   <div class="row g-3">
+    <div class="col-12"><label class="form-label" for="nama">Nama lengkap *</label><input id="nama" class="form-control" required minlength="3"><div class="invalid-feedback">Isi nama minimal 3 huruf.</div></div>
+    <div class="col-12"><label class="form-label" for="kontak">No. WhatsApp atau email *</label><input id="kontak" class="form-control" placeholder="0812xxxx atau nama@email.com" required><div class="invalid-feedback">Isi nomor WhatsApp (9–14 digit) atau email yang valid.</div></div>
+    <div class="col-md-6"><label class="form-label" for="jenjang">Jenjang *</label><select id="jenjang" class="form-select" required><option value="">Pilih jenjang</option><option>SMP</option><option>SMA</option><option>Kuliah</option></select><div class="invalid-feedback">Pilih jenjang.</div></div>
+    <div class="col-md-6"><label class="form-label" for="jenis">Jenis tugas</label><select id="jenis" class="form-select"></select></div>
+    <div class="col-12"><label class="form-label" for="paket">Paket layanan</label><select id="paket" class="form-select"><option>Basic</option><option selected>Standard</option><option>Premium</option></select></div>
+    <div class="col-12"><div class="est d-flex justify-content-between align-items-center"><span>Estimasi biaya</span><strong id="estimasi" class="fs-5">Pilih jenjang dulu</strong></div></div>
+    <div class="col-12"><label class="form-label" for="file">Upload file (PDF, DOC, JPG, PNG – maks 10 MB)</label><input id="file" type="file" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"><div id="fileInfo" class="small mt-1 text-secondary"></div></div>
+    <div class="col-12"><label class="form-label" for="catatan">Catatan tambahan (boleh berisi link tugas)</label><textarea id="catatan" rows="3" class="form-control"></textarea></div>
+    <div class="col-sm-6 d-grid"><button type="button" class="btn btn-success btn-lg" data-send="wa"><i class="bi bi-whatsapp"></i> Kirim ke WhatsApp</button></div>
+    <div class="col-sm-6 d-grid"><button type="button" class="btn btn-primary btn-lg" data-send="mail"><i class="bi bi-envelope"></i> Kirim ke Email</button></div>
+   </div>
+  </form>
+ </div>
+</section>
+
+<section id="lacak">
+ <div class="container" style="max-width:600px">
+  <h2 class="text-center fw-bold mb-4">Lacak pesanan</h2>
+  <div class="cardx">
+   <div class="input-group"><input id="kode" class="form-control" placeholder="Contoh: DTX-AB12CD"><button id="lacakBtn" class="btn btn-primary">Cari</button></div>
+   <div id="lacakOut" class="mt-3"></div>
+  </div>
+ </div>
+</section>
+
+<section id="faq" class="bg-body-secondary">
+ <div class="container" style="max-width:760px">
+  <h2 class="text-center fw-bold mb-4">Pertanyaan umum</h2>
+  <div class="accordion" id="faqAcc"></div>
+ </div>
+</section>
+
+<footer class="py-5">
+ <div class="container">
+  <div class="row g-4">
+   <div class="col-md-5"><img class="logo-foot" src="logo%20detectra.png" alt="Detectra" height="40"><p class="small mt-2">Platform koreksi tugas online untuk siswa dan mahasiswa.</p></div>
+   <div class="col-md-4"><h6 class="text-white">Kontak</h6><div class="small"><a href="mailto:admin@koreksitugas.id"><i class="bi bi-envelope"></i> admin@koreksitugas.id</a><br><a href="https://wa.me/62xxxx"><i class="bi bi-whatsapp"></i> +62 xxxx</a></div></div>
+   <div class="col-md-3"><h6 class="text-white">Sosial media</h6><a href="#" class="fs-4 me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="#" class="fs-4 me-3" aria-label="TikTok"><i class="bi bi-tiktok"></i></a><a href="#" class="fs-4" aria-label="YouTube"><i class="bi bi-youtube"></i></a></div>
+  </div>
+  <hr class="border-secondary"><div class="small text-center">© 2026 Detectra. Semua hak dilindungi.</div>
+ </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><i class="bi bi-whatsapp"></i></a>
+
+<div class="modal fade" id="okModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content text-center p-4" style="border-radius:16px">
+ <div class="display-3 text-success"><i class="bi bi-check-circle-fill"></i></div>
+ <h4>Terima kasih, pesananmu sedang diproses</h4>
+ <p class="mb-1">Kode order kamu:</p><h3 id="okKode" class="text-primary"></h3>
+ <p class="small text-secondary">Simpan kode ini untuk melacak pesanan. Jika file belum terlampir, kirim manual lewat chat yang terbuka.</p>
+ <button class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+</div></div></div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index:1090"><div id="toast" class="toast align-items-center border-0 text-white" role="alert"><div class="d-flex"><div class="toast-body" id="toastMsg"></div><button class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const WA="62xxxx", MAIL="admin@koreksitugas.id";
+const LOGO_URL=""; // isi mis. "logo.png" untuk memakai logomu sendiri
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const rp=n=>"Rp "+n.toLocaleString("id-ID");
+const PRICE={SMP:[15000,25000,40000],SMA:[20000,35000,55000],Kuliah:[30000,50000,80000]};
+const PKG=["Basic","Standard","Premium"];
+const PDESC=[["Koreksi ejaan &amp; tata bahasa","Hasil dalam 6–12 jam"],["Koreksi + struktur + komentar","Hasil dalam 12–24 jam"],["Koreksi + saran revisi + cek plagiarisme","Hasil dalam 24–48 jam"]];
+const SVC=[
+ {k:"SMP",t:"Koreksi Tugas SMP",d:"PR, esai, dan laporan sederhana.",e:"6–24 jam",i:"bi-pencil"},
+ {k:"SMA",t:"Koreksi Tugas SMA",d:"Makalah, esai, laporan praktikum, tugas bahasa.",e:"12–36 jam",i:"bi-journal-text"},
+ {k:"Kuliah",t:"Koreksi Tugas Kuliah",d:"Jurnal, laporan lab, esai ilmiah.",e:"24–48 jam",i:"bi-mortarboard"}];
+const JENIS={SMP:["PR","Esai","Laporan sederhana"],SMA:["Makalah","Esai","Laporan praktikum","Tugas bahasa"],Kuliah:["Jurnal","Laporan lab","Esai ilmiah","Skripsi/makalah"]};
+const FAQ=[
+ ["Berapa lama proses koreksi?","Tergantung paket dan jenjang, umumnya 6–48 jam sejak pembayaran dikonfirmasi."],
+ ["Bagaimana cara bayar?","Admin akan mengirim rincian pembayaran lewat WhatsApp atau email setelah order diterima."],
+ ["Apakah tugas saya dijamin aman?","Ya. File hanya dipakai untuk proses koreksi dan tidak dibagikan ke pihak lain."],
+ ["Apakah tugas saya akan dikerjakan ulang?","Tidak. Kami hanya mengoreksi dan memberi saran. Perbaikannya tetap kamu yang menulis."],
+ ["Bisa revisi hasil koreksi?","Bisa. Tanyakan langsung ke admin dalam 3 hari setelah hasil diterima."]];
+let lvl="SMP";
+
+// Logo kustom
+if(LOGO_URL){$$(".logo-mark").forEach(el=>el.innerHTML=`<img class="logo-img" src="${LOGO_URL}" alt="" style="object-fit:contain">`);
+ document.querySelector('link[rel=icon]').href=LOGO_URL}
+
+// Service cards
+$("#svcGrid").innerHTML=SVC.map(s=>`<div class="col-md-4 reveal"><div class="cardx d-flex flex-column"><div class="ico"><i class="bi ${s.i}"></i></div><h4>${s.t}</h4><p>${s.d}</p><p class="small text-secondary mt-auto"><i class="bi bi-clock"></i> Estimasi ${s.e}</p><a href="#harga" class="btn btn-outline-primary" data-lvl="${s.k}">Lihat harga ${s.k}</a></div></div>`).join("");
+$$("[data-lvl]").forEach(b=>b.onclick=()=>{lvl=b.dataset.lvl;renderPrice()});
+
+// Prices
+function renderPrice(){
+ const d=$("#disc").checked;
+ $("#lvlTabs").innerHTML=Object.keys(PRICE).map(k=>`<li class="nav-item"><button class="nav-link ${k==lvl?"active":""}" data-k="${k}">${k}</button></li>`).join("");
+ $$("#lvlTabs button").forEach(b=>b.onclick=()=>{lvl=b.dataset.k;renderPrice()});
+ $("#priceGrid").innerHTML=PRICE[lvl].map((p,i)=>`<div class="col-md-4"><div class="cardx price-card ${i==1?"pop":""}">${i==1?'<span class="badge text-bg-warning mb-2">Paling laris</span>':""}<h5>${PKG[i]}</h5><div class="price">${d?`<s>${rp(p)}</s><br>${rp(p*.8)}`:rp(p)}</div><p class="mt-2 mb-1">${PDESC[i][0]}</p><p class="small text-secondary">${PDESC[i][1]}</p><button class="btn btn-primary w-100" data-pick="${i}">Pilih ${PKG[i]}</button></div></div>`).join("");
+ $$("[data-pick]").forEach(b=>b.onclick=()=>{$("#jenjang").value=lvl;fillJenis();$("#paket").value=PKG[b.dataset.pick];est();$("#order").scrollIntoView({behavior:"smooth"})});
+}
+$("#disc").onchange=()=>{renderPrice();est()};
+renderPrice();
+
+// Order form
+function fillJenis(){const j=$("#jenjang").value;$("#jenis").innerHTML=(JENIS[j]||["Pilih jenjang dulu"]).map(x=>`<option>${x}</option>`).join("")}
+function est(){const j=$("#jenjang").value;if(!j){$("#estimasi").textContent="Pilih jenjang dulu";return}
+ let p=PRICE[j][PKG.indexOf($("#paket").value)];if($("#disc").checked)p*=.8;$("#estimasi").textContent=rp(p)+($("#disc").checked?" (diskon 20%)":"")}
+$("#jenjang").onchange=()=>{fillJenis();est();chk($("#jenjang"))};$("#paket").onchange=est;fillJenis();
+
+const validators={
+ nama:v=>v.trim().length>=3,
+ kontak:v=>{v=v.trim();return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)||/^(\+?62|0)\d{8,13}$/.test(v.replace(/[\s-]/g,""))},
+ jenjang:v=>!!v};
+function chk(el){const ok=validators[el.id](el.value);el.classList.toggle("is-invalid",!ok);el.classList.toggle("is-valid",ok);return ok}
+["nama","kontak","jenjang"].forEach(id=>$("#"+id).addEventListener("input",e=>chk(e.target)));
+
+$("#file").onchange=e=>{const f=e.target.files[0],o=$("#fileInfo");if(!f){o.textContent="";return}
+ const ok=/\.(pdf|docx?|jpe?g|png)$/i.test(f.name);
+ if(!ok||f.size>10*1048576){e.target.value="";o.textContent="";toast(ok?"Ukuran file melebihi 10 MB.":"Format file harus PDF, DOC, JPG, atau PNG.","danger");return}
+ o.textContent=`${f.name} (${f.size>1048576?(f.size/1048576).toFixed(2)+" MB":Math.ceil(f.size/1024)+" KB"})`};
+
+function toast(m,t="success"){const el=$("#toast");el.className=`toast align-items-center border-0 text-white text-bg-${t}`;$("#toastMsg").textContent=m;bootstrap.Toast.getOrCreateInstance(el,{delay:3500}).show()}
+
+function buildMsg(kode){const f=$("#file").files[0];
+ return `Halo Detectra, saya mau order koreksi tugas.\n\nKode order: ${kode}\nNama: ${$("#nama").value.trim()}\nKontak: ${$("#kontak").value.trim()}\nJenjang: ${$("#jenjang").value}\nJenis tugas: ${$("#jenis").value}\nPaket: ${$("#paket").value}\nEstimasi: ${$("#estimasi").textContent}\nFile: ${f?f.name+" (kirim manual di chat ini)":"-"}\nCatatan: ${$("#catatan").value.trim()||"-"}`}
+
+$$("[data-send]").forEach(btn=>btn.onclick=()=>{
+ const ok=["nama","kontak","jenjang"].map(id=>chk($("#"+id))).every(Boolean);
+ if(!ok){toast("Lengkapi data yang wajib diisi.","danger");return}
+ const kode="DTX-"+Math.random().toString(36).slice(2,8).toUpperCase(), msg=buildMsg(kode), type=btn.dataset.send;
+ const old=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner-border spinner-border-sm"></span> Memproses...';
+ setTimeout(()=>{
+  const orders=JSON.parse(localStorage.getItem("dtx_orders")||"{}");
+  orders[kode]={t:Date.now(),nama:$("#nama").value.trim(),paket:$("#paket").value,jenjang:$("#jenjang").value};
+  localStorage.setItem("dtx_orders",JSON.stringify(orders));
+  const url=type=="wa"?`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`:`mailto:${MAIL}?subject=${encodeURIComponent("Order Koreksi "+kode)}&body=${encodeURIComponent(msg)}`;
+  window.open(url,type=="wa"?"_blank":"_self");
+  btn.disabled=false;btn.innerHTML=old;
+  $("#okKode").textContent=kode;new bootstrap.Modal("#okModal").show();toast("Pesanan berhasil dibuat.");
+  $("#orderForm").reset();$$("#orderForm .is-valid").forEach(e=>e.classList.remove("is-valid"));$("#fileInfo").textContent="";fillJenis();est();
+ },1200)});
+
+// Tracking (simulasi berdasarkan waktu sejak order)
+const STATUS=["Pesanan diterima","Pembayaran dikonfirmasi","Sedang dikoreksi","Selesai, hasil dikirim"];
+function track(){const k=$("#kode").value.trim().toUpperCase(),o=$("#lacakOut"),data=JSON.parse(localStorage.getItem("dtx_orders")||"{}")[k];
+ if(!data){o.innerHTML='<div class="alert alert-warning mb-0">Kode tidak ditemukan di perangkat ini. Periksa lagi kodenya.</div>';return}
+ const s=Math.min(3,Math.floor((Date.now()-data.t)/60000));
+ o.innerHTML=`<p class="mb-2"><strong>${data.nama}</strong> · ${data.jenjang} · ${data.paket}</p><ul class="list-group">${STATUS.map((x,i)=>`<li class="list-group-item ${i<=s?"":"text-secondary"}"><i class="bi ${i<=s?"bi-check-circle-fill text-success":"bi-circle"}"></i> ${x}</li>`).join("")}</ul><p class="small text-secondary mt-2 mb-0">Status contoh ini berjalan otomatis. Status asli dikonfirmasi admin.</p>`}
+$("#lacakBtn").onclick=track;$("#kode").onkeydown=e=>{if(e.key=="Enter")track()};
+
+// FAQ
+$("#faqAcc").innerHTML=FAQ.map((f,i)=>`<div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button ${i?"collapsed":""}" data-bs-toggle="collapse" data-bs-target="#f${i}">${f[0]}</button></h3><div id="f${i}" class="accordion-collapse collapse ${i?"":"show"}" data-bs-parent="#faqAcc"><div class="accordion-body">${f[1]}</div></div></div>`).join("");
+
+// WhatsApp floating
+$("#waFloat").href=`https://wa.me/${WA}?text=${encodeURIComponent("Halo Detectra, saya mau tanya soal layanan koreksi.")}`;
+
+// Dark mode
+function setTheme(t){document.documentElement.dataset.bsTheme=t;$("#themeBtn").innerHTML=`<i class="bi bi-${t=="dark"?"sun":"moon-stars"}"></i>`;try{localStorage.setItem("dtx_theme",t)}catch(e){}}
+setTheme(localStorage.getItem("dtx_theme")||"light");
+$("#themeBtn").onclick=()=>setTheme(document.documentElement.dataset.bsTheme=="dark"?"light":"dark");
+
+// Fade-in on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+$$(".reveal").forEach(el=>io.observe(el));
+document.documentElement.style.scrollBehavior="smooth";
+</script>
+</body>
+</html>
