@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Detectra – Jasa Koreksi Tugas Online</title>
-<link rel="icon" href="logo detectra.png">
+<link rel="icon" href="logo%20detectra.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20rx%3D%2211%22%20fill%3D%22%233B82F6%22/%3E%3Cpath%20d%3D%22M11%2021l6%206%2012-13%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%229%22%20r%3D%224.5%22%20fill%3D%22%23F59E0B%22/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +44,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
 .logo-nav,.logo-foot{width:auto;object-fit:contain}[data-bs-theme=dark] .logo-nav,.logo-foot{background:#fff;border-radius:10px;padding:3px 8px}
 .testi-ind button{background-color:#3B82F6!important;width:10px!important;height:10px!important;border-radius:50%;border:0!important;margin:0 4px!important;opacity:.3}.testi-ind .active{opacity:1;background-color:#F59E0B!important}
+.page{min-height:60vh}.navbar .nav-link.active{color:#3B82F6;font-weight:600;position:relative}.navbar .nav-link.active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:3px;border-radius:3px;background:#F59E0B}
 </style>
 </head>
 <body>
@@ -66,7 +67,8 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
  </div>
 </nav>
 
-<header id="home" class="hero">
+<main class="page" id="page-home">
+<header class="hero">
  <div class="container">
   <div class="row align-items-center g-5">
    <div class="col-lg-7">
@@ -89,7 +91,6 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   </div>
  </div>
 </header>
-
 <section>
  <div class="container">
   <h2 class="text-center fw-bold mb-5 reveal">Kenapa pilih Detectra?</h2>
@@ -112,26 +113,6 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   </div>
  </div>
 </section>
-
-<section id="layanan">
- <div class="container">
-  <h2 class="text-center fw-bold mb-2 reveal">Layanan</h2>
-  <p class="text-center text-secondary mb-5">Pilih sesuai jenjangmu.</p>
-  <div class="row g-4" id="svcGrid"></div>
- </div>
-</section>
-
-<section id="harga" class="bg-body-secondary">
- <div class="container">
-  <h2 class="text-center fw-bold mb-3 reveal">Harga</h2>
-  <div class="d-flex justify-content-center align-items-center gap-3 mb-4 flex-wrap">
-   <ul class="nav nav-pills" id="lvlTabs"></ul>
-   <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="disc"><label class="form-check-label" for="disc">Diskon pelajar 20%</label></div>
-  </div>
-  <div class="row g-4 justify-content-center" id="priceGrid"></div>
- </div>
-</section>
-
 <section>
  <div class="container">
   <h2 class="text-center fw-bold mb-5 reveal">Kata mereka</h2>
@@ -151,8 +132,33 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   </div>
  </div>
 </section>
+</main>
 
-<section id="order" class="bg-body-secondary">
+<main class="page" id="page-layanan">
+<section>
+ <div class="container">
+  <h2 class="text-center fw-bold mb-2 reveal">Layanan</h2>
+  <p class="text-center text-secondary mb-5">Pilih sesuai jenjangmu.</p>
+  <div class="row g-4" id="svcGrid"></div>
+ </div>
+</section>
+</main>
+
+<main class="page" id="page-harga">
+<section class="bg-body-secondary">
+ <div class="container">
+  <h2 class="text-center fw-bold mb-3 reveal">Harga</h2>
+  <div class="d-flex justify-content-center align-items-center gap-3 mb-4 flex-wrap">
+   <ul class="nav nav-pills" id="lvlTabs"></ul>
+   <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="disc"><label class="form-check-label" for="disc">Diskon pelajar 20%</label></div>
+  </div>
+  <div class="row g-4 justify-content-center" id="priceGrid"></div>
+ </div>
+</section>
+</main>
+
+<main class="page" id="page-order">
+<section class="bg-body-secondary">
  <div class="container" style="max-width:760px">
   <h2 class="text-center fw-bold mb-4">Order koreksi</h2>
   <form id="orderForm" class="cardx" novalidate>
@@ -171,8 +177,10 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   </form>
  </div>
 </section>
+</main>
 
-<section id="lacak">
+<main class="page" id="page-lacak">
+<section>
  <div class="container" style="max-width:600px">
   <h2 class="text-center fw-bold mb-4">Lacak pesanan</h2>
   <div class="cardx">
@@ -181,13 +189,20 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   </div>
  </div>
 </section>
+</main>
 
-<section id="faq" class="bg-body-secondary">
+<main class="page" id="page-faq">
+<section class="bg-body-secondary">
  <div class="container" style="max-width:760px">
   <h2 class="text-center fw-bold mb-4">Pertanyaan umum</h2>
   <div class="accordion" id="faqAcc"></div>
  </div>
 </section>
+</main>
+
+<div id="ctaStrip" class="py-5 text-center" hidden style="background:linear-gradient(135deg,#3B82F6,#2563EB);color:#fff">
+ <div class="container"><h3 class="fw-bold">Siap kirim tugasmu?</h3><p class="mb-3">Pilih paket, isi form, dan hasil koreksi dikirim lewat WhatsApp atau email.</p><a href="#order" class="btn btn-amber btn-lg px-4">Order Sekarang</a></div>
+</div>
 
 <footer class="py-5">
  <div class="container">
@@ -248,7 +263,7 @@ function renderPrice(){
  $("#lvlTabs").innerHTML=Object.keys(PRICE).map(k=>`<li class="nav-item"><button class="nav-link ${k==lvl?"active":""}" data-k="${k}">${k}</button></li>`).join("");
  $$("#lvlTabs button").forEach(b=>b.onclick=()=>{lvl=b.dataset.k;renderPrice()});
  $("#priceGrid").innerHTML=PRICE[lvl].map((p,i)=>`<div class="col-md-4"><div class="cardx price-card ${i==1?"pop":""}">${i==1?'<span class="badge text-bg-warning mb-2">Paling laris</span>':""}<h5>${PKG[i]}</h5><div class="price">${d?`<s>${rp(p)}</s><br>${rp(p*.8)}`:rp(p)}</div><p class="mt-2 mb-1">${PDESC[i][0]}</p><p class="small text-secondary">${PDESC[i][1]}</p><button class="btn btn-primary w-100" data-pick="${i}">Pilih ${PKG[i]}</button></div></div>`).join("");
- $$("[data-pick]").forEach(b=>b.onclick=()=>{$("#jenjang").value=lvl;fillJenis();$("#paket").value=PKG[b.dataset.pick];est();$("#order").scrollIntoView({behavior:"smooth"})});
+ $$("[data-pick]").forEach(b=>b.onclick=()=>{$("#jenjang").value=lvl;fillJenis();$("#paket").value=PKG[b.dataset.pick];est();location.hash="order"});
 }
 $("#disc").onchange=()=>{renderPrice();est()};
 renderPrice();
@@ -315,6 +330,17 @@ $("#themeBtn").onclick=()=>setTheme(document.documentElement.dataset.bsTheme=="d
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 $$(".reveal").forEach(el=>io.observe(el));
 document.documentElement.style.scrollBehavior="smooth";
+
+// Router: tiap menu menampilkan halamannya sendiri
+const PAGES={home:"Beranda",layanan:"Layanan",harga:"Harga",order:"Order",lacak:"Lacak Pesanan",faq:"FAQ"};
+function route(){let h=location.hash.slice(1);if(!PAGES[h])h="home";
+ $$(".page").forEach(p=>p.hidden=p.id!=="page-"+h);
+ $$("#nav .nav-link").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+h));
+ $("#ctaStrip").hidden=(h==="home"||h==="order");
+ document.title=(h=="home"?"Detectra – Jasa Koreksi Tugas Online":PAGES[h]+" | Detectra");
+ window.scrollTo({top:0,behavior:"instant"});
+ const c=bootstrap.Collapse.getInstance($("#nav"));if(c)c.hide();}
+addEventListener("hashchange",route);route();
 </script>
 </body>
 </html>
