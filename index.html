@@ -59,9 +59,8 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
     <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
     <li class="nav-item"><a class="nav-link" href="#harga">Harga</a></li>
     <li class="nav-item"><a class="nav-link" href="#portofolio">Portofolio</a></li>
-    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+    <li class="nav-item"><a class="nav-link" href="#review">Review</a></li>
     <li class="nav-item ms-lg-2"><button id="themeBtn" class="btn btn-sm btn-outline-secondary" aria-label="Mode gelap"><i class="bi bi-moon-stars"></i></button></li>
-    <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-amber btn-sm px-3" href="#order">Order Sekarang</a></li>
    </ul>
   </div>
  </div>
@@ -194,11 +193,24 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 </section>
 </main>
 
-<main class="page" id="page-faq">
+<main class="page" id="page-review">
 <section class="bg-body-secondary">
- <div class="container" style="max-width:760px">
-  <h2 class="text-center fw-bold mb-4">Pertanyaan umum</h2>
-  <div class="accordion" id="faqAcc"></div>
+ <div class="container" style="max-width:900px">
+  <h2 class="text-center fw-bold mb-2">Review pengguna</h2>
+  <p class="text-center text-secondary mb-4">Pengalaman mereka yang sudah memakai Detectra.</p>
+  <div class="cardx mb-4 text-center" id="revSummary"></div>
+  <div class="row g-4" id="revGrid"></div>
+  <form id="revForm" class="cardx mt-5" novalidate>
+   <h4 class="mb-3">Tulis review</h4>
+   <div class="row g-3">
+    <div class="col-md-6"><label class="form-label" for="revNama">Nama</label><input id="revNama" class="form-control" maxlength="40" required><div class="invalid-feedback">Isi nama kamu.</div></div>
+    <div class="col-md-6"><label class="form-label" for="revJenjang">Jenjang</label><select id="revJenjang" class="form-select"><option>SMP</option><option>SMA</option><option>Kuliah</option></select></div>
+    <div class="col-12"><label class="form-label d-block">Rating</label><div id="starPick" class="fs-3 text-warning" role="radiogroup" aria-label="Rating"></div></div>
+    <div class="col-12"><label class="form-label" for="revIsi">Review</label><textarea id="revIsi" rows="3" class="form-control" maxlength="300" required></textarea><div class="invalid-feedback">Tulis minimal 10 karakter.</div></div>
+    <div class="col-12 d-grid"><button class="btn btn-primary btn-lg" type="submit">Kirim review</button></div>
+   </div>
+   <p class="small text-secondary mt-2 mb-0">Review yang kamu kirim tersimpan di browser ini saja.</p>
+  </form>
  </div>
 </section>
 </main>
@@ -243,12 +255,6 @@ const SVC=[
  {k:"SMA",t:"Koreksi Tugas SMA",d:"Makalah, esai, laporan praktikum, tugas bahasa.",e:"12–36 jam",i:"bi-journal-text"},
  {k:"Kuliah",t:"Koreksi Tugas Kuliah",d:"Jurnal, laporan lab, esai ilmiah.",e:"24–48 jam",i:"bi-mortarboard"}];
 const JENIS={SMP:["PR","Esai","Laporan sederhana"],SMA:["Makalah","Esai","Laporan praktikum","Tugas bahasa"],Kuliah:["Jurnal","Laporan lab","Esai ilmiah","Skripsi/makalah"]};
-const FAQ=[
- ["Berapa lama proses koreksi?","Tergantung paket dan jenjang, umumnya 6–48 jam sejak pembayaran dikonfirmasi."],
- ["Bagaimana cara bayar?","Admin akan mengirim rincian pembayaran lewat WhatsApp atau email setelah order diterima."],
- ["Apakah tugas saya dijamin aman?","Ya. File hanya dipakai untuk proses koreksi dan tidak dibagikan ke pihak lain."],
- ["Apakah tugas saya akan dikerjakan ulang?","Tidak. Kami hanya mengoreksi dan memberi saran. Perbaikannya tetap kamu yang menulis."],
- ["Bisa revisi hasil koreksi?","Bisa. Tanyakan langsung ke admin dalam 3 hari setelah hasil diterima."]];
 let lvl="SMP";
 
 
@@ -304,8 +310,6 @@ $$("[data-send]").forEach(btn=>btn.onclick=()=>{
  },1200)});
 
 
-// FAQ
-$("#faqAcc").innerHTML=FAQ.map((f,i)=>`<div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button ${i?"collapsed":""}" data-bs-toggle="collapse" data-bs-target="#f${i}">${f[0]}</button></h3><div id="f${i}" class="accordion-collapse collapse ${i?"":"show"}" data-bs-parent="#faqAcc"><div class="accordion-body">${f[1]}</div></div></div>`).join("");
 
 // WhatsApp floating
 $("#waFloat").href=`https://wa.me/${WA}?text=${encodeURIComponent("Halo Detectra, saya mau tanya soal layanan koreksi.")}`;
@@ -335,8 +339,36 @@ function renderPort(){
  $("#portGrid").innerHTML=PORT.filter(x=>pf=="Semua"||x.k==pf).map(x=>`<div class="col-md-6 col-lg-4"><div class="cardx pf d-flex flex-column"><div class="d-flex justify-content-between mb-2"><span class="badge text-bg-primary">${x.k}</span><span class="badge text-bg-warning">${x.p}</span></div><h5>${x.j}</h5><p class="small mb-1"><strong>Sebelum:</strong> <del>${x.a}</del></p><p class="small mb-2"><strong>Sesudah:</strong> <ins>${x.b}</ins></p><p class="small text-secondary">${x.c}</p><div class="est d-flex justify-content-between mt-auto"><span>Nilai</span><strong>${x.n}</strong></div></div></div>`).join("");}
 renderPort();
 
+// Review
+const REV0=[
+ {n:"Alya",j:"SMA",r:5,t:"Esai bahasa Inggrisku jadi jauh lebih rapi. Catatannya gampang dipahami."},
+ {n:"Rizky",j:"Kuliah",r:5,t:"Laporan praktikum dicek sampai struktur. Sebelum sidang jadi lebih tenang."},
+ {n:"Bu Dewi",j:"Orang tua SMP",r:5,t:"Anak saya jadi paham kesalahannya sendiri, bukan sekadar dibenarkan."},
+ {n:"Naufal",j:"SMP",r:4,t:"PR Bahasa Indonesia dikoreksi cepat, komentarnya bikin aku ngerti letak salahnya."},
+ {n:"Intan",j:"Kuliah",r:5,t:"Saran revisi di paket Premium membantu banget buat merapikan abstrak jurnalku."}];
+let myRev=[],pick=5;
+try{myRev=JSON.parse(localStorage.getItem("dtx_reviews")||"[]")}catch(e){}
+const esc=v=>v.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const stars=n=>'<span class="text-warning">'+'<i class="bi bi-star-fill"></i>'.repeat(n)+'<i class="bi bi-star"></i>'.repeat(5-n)+'</span>';
+function renderRev(){
+ const all=[...myRev,...REV0],avg=all.reduce((a,x)=>a+x.r,0)/all.length;
+ $("#revSummary").innerHTML=`<div class="price text-primary">${avg.toFixed(1).replace(".",",")}</div><div class="fs-5">${stars(Math.round(avg))}</div><div class="small text-secondary">dari ${all.length} review</div>`;
+ $("#revGrid").innerHTML=all.map(x=>`<div class="col-md-6"><div class="cardx"><div class="d-flex justify-content-between mb-2">${stars(x.r)}<span class="badge text-bg-primary">${esc(x.j)}</span></div><p class="mb-2">"${esc(x.t)}"</p><strong>${esc(x.n)}</strong></div></div>`).join("");
+}
+function renderPick(){$("#starPick").innerHTML=[1,2,3,4,5].map(i=>`<i role="radio" aria-checked="${i==pick}" tabindex="0" class="bi bi-star${i<=pick?"-fill":""}" data-s="${i}" style="cursor:pointer" aria-label="${i} bintang"></i>`).join(" ");
+ $$("#starPick i").forEach(el=>{const set=()=>{pick=+el.dataset.s;renderPick()};el.onclick=set;el.onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();set()}}})}
+$("#revForm").addEventListener("submit",e=>{e.preventDefault();
+ const nama=$("#revNama"),isi=$("#revIsi");
+ const a=nama.value.trim().length>0,b=isi.value.trim().length>=10;
+ nama.classList.toggle("is-invalid",!a);isi.classList.toggle("is-invalid",!b);
+ if(!a||!b){toast("Lengkapi nama dan review dulu.","danger");return}
+ myRev.unshift({n:nama.value.trim(),j:$("#revJenjang").value,r:pick,t:isi.value.trim()});
+ try{localStorage.setItem("dtx_reviews",JSON.stringify(myRev))}catch(e){}
+ e.target.reset();pick=5;renderPick();renderRev();toast("Review terkirim. Terima kasih!")});
+renderRev();renderPick();
+
 // Router: tiap menu menampilkan halamannya sendiri
-const PAGES={home:"Beranda",layanan:"Layanan",harga:"Harga",order:"Order",portofolio:"Portofolio",faq:"FAQ"};
+const PAGES={home:"Beranda",layanan:"Layanan",harga:"Harga",order:"Order",portofolio:"Portofolio",review:"Review"};
 function route(){let h=location.hash.slice(1);if(!PAGES[h])h="home";
  $$(".page").forEach(p=>p.hidden=p.id!=="page-"+h);
  $$("#nav .nav-link").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+h));
