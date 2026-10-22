@@ -48,6 +48,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 .proof{display:block;margin-bottom:6px;cursor:zoom-in;color:inherit}.proof img{width:100%;max-height:220px;object-fit:cover;object-position:top;border-radius:12px;border:1px solid rgba(128,128,128,.25);display:block;margin-bottom:6px}
 .chat-th{aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid rgba(128,128,128,.2);box-shadow:0 6px 24px rgba(0,0,0,.07);cursor:zoom-in;padding:0;width:100%;transition:transform .25s}.chat-th:hover{transform:scale(1.03)}.chat-th img{width:100%;height:100%;object-fit:cover;display:block}.chat-ph{height:100%;display:grid;place-content:center;gap:6px;text-align:center;padding:10px;font-size:.75rem;color:#6b7280;cursor:default}
 .wa-float{border:0}.wa-box{position:fixed;right:18px;bottom:86px;width:min(340px,calc(100vw - 36px));background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);z-index:1030;overflow:hidden;border:1px solid rgba(128,128,128,.2)}.wa-head{background:#075E54;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}.wa-body{background:rgba(37,211,102,.09);padding:12px;max-height:60vh;overflow:auto}.wa-bubble{background:var(--card);border-radius:12px 12px 12px 4px;padding:10px 12px;margin-bottom:8px;font-size:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.12)}.wa-box .btn-outline-success{background:var(--card)}
+.chat-th.empty{display:grid;place-content:center;justify-items:center;gap:4px;text-align:center;border:2px dashed rgba(128,128,128,.45);box-shadow:none;background:transparent;cursor:default;color:#6b7280;font-size:.8rem;padding:10px}.chat-th.empty:hover{transform:none}
 </style>
 </head>
 <body>
@@ -191,12 +192,6 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   <h2 class="text-center fw-bold mb-2">Testimoni</h2>
   <p class="text-center text-secondary mb-4">Percakapan dengan pelanggan Detectra. Klik gambar untuk memperbesar.</p>
   <div class="row g-3" id="chatGrid"></div>
-  <div id="chatEmpty" class="cardx text-center" hidden>
-   <div class="ico mx-auto"><i class="bi bi-chat-heart"></i></div>
-   <h5>Testimoni pelanggan akan tampil di sini</h5>
-   <p class="text-secondary">Jadi yang pertama merasakan koreksi dari Detectra.</p>
-   <a href="#order" class="btn btn-amber px-4">Order Sekarang</a>
-  </div>
  </div>
 </section>
 </main>
@@ -355,20 +350,28 @@ function renderPort(){
  $("#portGrid").innerHTML=PORT.filter(x=>pf=="Semua"||x.k==pf).map(x=>`<div class="col-md-6 col-lg-4"><div class="cardx pf d-flex flex-column"><div class="d-flex justify-content-between mb-2"><span class="badge text-bg-primary">${x.k}</span><span class="badge text-bg-warning">${x.p}</span></div><h5>${x.j}</h5><p class="small mb-1"><strong>Sebelum:</strong> <del>${x.a}</del></p><p class="small mb-2"><strong>Sesudah:</strong> <ins>${x.b}</ins></p><p class="small text-secondary">${x.c}</p><div class="est d-flex justify-content-between mt-auto"><span>Nilai</span><strong>${x.n}</strong></div></div></div>`).join("");}
 renderPort();
 
-// Testimoni: screenshot chat pelanggan. Taruh gambar di folder "Review" lalu tulis namanya di sini.
-const CHAT=[]; // contoh: ["Review/chat1.jpg","Review/chat2.jpg"]
+// Testimoni: 10 slot bukti chat. Simpan gambar di folder "Review" dengan nama chat1 sampai chat10
+// (format .jpg, .png, .jpeg, atau .webp). Slot yang gambarnya belum ada tampil sebagai kotak kosong.
+const CHAT=Array.from({length:10},(_,i)=>`Review/chat${i+1}`);
+const CHAT_EXT=["jpg","png","jpeg","webp"], HOME_MAX=4;
 function chatSync(){
- $("#chatEmpty").hidden=$("#chatGrid").children.length>0;
+ [...$("#homeChat").children].forEach((c,i)=>c.hidden=i>=HOME_MAX);
  $("#homeRev").hidden=$("#homeChat").children.length==0;
 }
-function drawChat(box,list){
- box.innerHTML=list.map((src,i)=>`<div class="col-6 col-md-3"><button type="button" class="chat-th" data-src="${src}" aria-label="Perbesar testimoni ${i+1}"><img src="${src}" alt="Testimoni pelanggan ${i+1}" loading="lazy"></button></div>`).join("");
+function drawChat(box,list,keepEmpty){
+ box.innerHTML=list.map((base,i)=>{const src=/\.\w+$/.test(base)?base:base+"."+CHAT_EXT[0];
+  return `<div class="col-6 col-md-3"><button type="button" class="chat-th" data-n="${i+1}" data-base="${base}" data-try="0" data-src="${src}" aria-label="Perbesar testimoni ${i+1}"><img src="${src}" alt="Testimoni pelanggan ${i+1}"></button></div>`}).join("");
  $$(".chat-th",box).forEach(b=>{
-  b.querySelector("img").onerror=()=>{b.closest(".col-6").remove();chatSync()};
+  const im=b.querySelector("img"),base=b.dataset.base,auto=!/\.\w+$/.test(base);
+  im.onerror=()=>{
+   const n=+b.dataset.try+1;
+   if(auto&&n<CHAT_EXT.length){b.dataset.try=n;b.dataset.src=base+"."+CHAT_EXT[n];im.src=b.dataset.src;return}
+   if(keepEmpty){const ph=document.createElement("div");ph.className="chat-th empty";ph.setAttribute("aria-label","Slot testimoni "+b.dataset.n+" masih kosong");ph.innerHTML=`<i class="bi bi-chat-square-text fs-2"></i><span class="fw-semibold">Testimoni ${b.dataset.n}</span><span>Segera hadir</span>`;b.replaceWith(ph);return}
+   b.closest(".col-6").remove();chatSync()};
   b.onclick=()=>{$("#imgModalSrc").src=b.dataset.src;bootstrap.Modal.getOrCreateInstance("#imgModal").show()};
  });
 }
-drawChat($("#chatGrid"),CHAT);drawChat($("#homeChat"),CHAT.slice(0,4));chatSync();
+drawChat($("#chatGrid"),CHAT,true);drawChat($("#homeChat"),CHAT);chatSync();
 
 // Router: tiap menu menampilkan halamannya sendiri
 const PAGES={home:"Beranda",layanan:"Layanan",harga:"Harga",order:"Order",portofolio:"Portofolio",testimoni:"Testimoni"};
