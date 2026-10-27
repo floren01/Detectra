@@ -255,7 +255,7 @@ const LEVELS=["SMP","SMA","Kuliah"];
 const SERVICES={
  koreksi:{nama:"Koreksi Tugas",icon:"bi-pencil-square",
   sub:"Tugasmu diperiksa, lalu kamu menerima catatan revisi, penilaian, dan saran perbaikan.",
-  harga:{SMP:[12000,22000],SMA:[15000,30000],Kuliah:[25000,50000]},
+  harga:{SMP:[12000,22000],SMA:[15000,30000],Kuliah:[20000,35000]},
   paket:[
    ["Koreksi + saran perbaikan singkat","6–12 jam",["Koreksi ejaan, tata bahasa, dan kesalahan jawaban","Saran perbaikan singkat"]],
    ["Koreksi + komentar detail, nilai, dan cek ulang","12–24 jam",["Semua isi paket Basic","Komentar detail per bagian atau soal","Saran revisi yang terarah","Nilai beserta alasannya","1x cek ulang setelah kamu merevisi"]]],
@@ -270,17 +270,17 @@ const JENIS={SMP:["PR","Esai","Laporan sederhana","Ringkasan"],SMA:["Makalah","E
    sampul = gambar sampul kartu (opsional, tanpa ekstensi juga boleh). Kalau kosong, sampul dibuat otomatis.
    Tambah kartu baru dengan menyalin satu blok. jenjang: "SMP", "SMA", "Kuliah". paket: "Basic" atau "Lengkap". */
 const PORT=[
- {judul:"Judul portofolio 1",jenjang:"SMA",jenis:"Makalah",paket:"Lengkap",
-  deskripsi:"Tulis penjelasan singkat: tugasnya apa, apa yang kamu koreksi, dan saran apa yang kamu berikan.",
+ {judul:"Koreksi Daftar Kosakata TOEIC (601–750)",jenjang:"Kuliah",jenis:"Kosakata TOEIC",paket:"Lengkap",
+  deskripsi:"Koreksi daftar kosakata TOEIC nomor 601–750 beserta arti, jenis kata (PoS), dan contoh kalimatnya. 23 entri diperbaiki: arti diperjelas sesuai konteks dan contoh kalimat dibuat lebih alami. Di akhir dokumen ada catatan tambahan untuk beberapa kata. Bagian asli tidak diubah, hasil koreksi ditambahkan di bagian bawah.",
   sampul:"Portofolio/sampul1",file:"Portofolio/contoh1.pdf"}];
 
 /* Testimoni: 10 kartu. Tiap kartu punya judul, jenjang, dan paket yang dipilih pelanggan,
    lalu 2 sampai 3 foto bukti chat di bawahnya. Simpan foto di folder "Review" dengan nama t1-1, t1-2, t1-3, t2-1, dst.
    Isi judul/jenjang/paket pada kartu yang sudah ada fotonya. Kartu yang fotonya kosong tampil sebagai kotak "segera hadir". */
 const TESTI=[
- {judul:"",jenjang:"",paket:"",foto:["Review/t1-1","Review/t1-2","Review/t1-3"]},
- {judul:"",jenjang:"",paket:"",foto:["Review/t2-1","Review/t2-2","Review/t2-3"]},
- {judul:"",jenjang:"",paket:"",foto:["Review/t3-1","Review/t3-2","Review/t3-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/pembayaran1.jpg","Review/testimoni1.jpg","Review/t1-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/pembayaran2.jpg","Review/t2-2","Review/t2-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/pembayaran3.jpg","Review/testimoni3.jpg","Review/t3-3"]},
  {judul:"",jenjang:"",paket:"",foto:["Review/t4-1","Review/t4-2","Review/t4-3"]},
  {judul:"",jenjang:"",paket:"",foto:["Review/t5-1","Review/t5-2","Review/t5-3"]},
  {judul:"",jenjang:"",paket:"",foto:["Review/t6-1","Review/t6-2","Review/t6-3"]},
