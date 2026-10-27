@@ -164,7 +164,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
     <div class="col-12"><label class="form-label" for="kontak">No. WhatsApp atau email *</label><input id="kontak" class="form-control" placeholder="0812xxxx atau nama@email.com" required><div class="invalid-feedback">Isi nomor WhatsApp (9–14 digit) atau email yang valid.</div></div>
     <div class="col-md-6"><label class="form-label" for="jenjang">Jenjang *</label><select id="jenjang" class="form-select" required><option value="">Pilih jenjang</option><option>SMP</option><option>SMA</option><option>Kuliah</option></select><div class="invalid-feedback">Pilih jenjang.</div></div>
     <div class="col-md-6"><label class="form-label" for="jenis">Jenis tugas</label><select id="jenis" class="form-select"></select></div>
-    <div class="col-md-6"><label class="form-label" for="paket">Paket layanan</label><select id="paket" class="form-select"><option>Basic</option><option selected>Standard</option><option>Premium</option></select></div>
+    <div class="col-md-6"><label class="form-label" for="paket">Paket layanan</label><select id="paket" class="form-select"><option>Basic</option><option selected>Lengkap</option></select></div>
     <div class="col-md-6"><label class="form-label" for="deadline">Deadline (opsional)</label><input id="deadline" type="date" class="form-control"></div>
     <div class="col-12"><div class="est d-flex justify-content-between align-items-center"><span>Estimasi biaya</span><strong id="estimasi" class="fs-5">Pilih jenjang dulu</strong></div></div>
     <div class="col-12"><label class="form-label" for="file">Upload file (PDF, DOC, JPG, PNG, maks 10 MB)</label><input id="file" type="file" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"><div id="fileInfo" class="small mt-1 text-secondary"></div></div>
@@ -206,7 +206,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   <div class="row g-4">
    <div class="col-md-5"><img class="logo-foot" src="Logo/logodetectra.png" alt="Detectra"><p class="small mt-2">Platform koreksi tugas online untuk siswa dan mahasiswa.</p></div>
    <div class="col-md-4"><h6 class="text-white">Kontak</h6><div class="small"><a href="mailto:admin@koreksitugas.id"><i class="bi bi-envelope"></i> admin@koreksitugas.id</a><br><a id="waFoot" href="https://wa.me/6285712833094"><i class="bi bi-whatsapp"></i> +62 857-1283-3094</a></div></div>
-   <div class="col-md-3"><h6 class="text-white">Sosial media</h6><a href="https://www.instagram.com/detectra_/" target="_blank" rel="noopener" class="fs-4 me-3" aria-label="Instagram @detectra_"><i class="bi bi-instagram"></i></a><a href="#" class="fs-4 me-3" aria-label="TikTok"><i class="bi bi-tiktok"></i></a><a href="#" class="fs-4" aria-label="YouTube"><i class="bi bi-youtube"></i></a></div>
+   <div class="col-md-3"><h6 class="text-white">Sosial media</h6><a href="https://www.instagram.com/detectra_/" target="_blank" rel="noopener" class="fs-4 me-3" aria-label="Instagram @detectra_"><i class="bi bi-instagram"></i></a><a href="https://www.tiktok.com/@detectra_" target="_blank" rel="noopener" class="fs-4 me-3" aria-label="TikTok @detectra_"><i class="bi bi-tiktok"></i></a><a href="https://www.facebook.com/search/top?q=Detectra%20Detectra" target="_blank" rel="noopener" class="fs-4" aria-label="Facebook Detectra Detectra"><i class="bi bi-facebook"></i></a></div>
   </div>
   <hr class="border-secondary"><div class="small text-center">© 2026 Detectra. Semua hak dilindungi.</div>
  </div>
@@ -242,24 +242,26 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <script>
 /* ===== DATA YANG BISA KAMU UBAH ===== */
 const WA="6285712833094", MAIL="admin@koreksitugas.id";
-const PKG=["Basic","Standard","Premium"];
+const PKG=["Basic","Lengkap"];
 const LEVELS=["SMP","SMA","Kuliah"];
 const SERVICES={
  koreksi:{nama:"Koreksi Tugas",icon:"bi-pencil-square",
   sub:"Tugasmu diperiksa, lalu kamu menerima catatan revisi, penilaian, dan saran perbaikan.",
-  harga:{SMP:[12000,20000,32000],SMA:[15000,28000,45000],Kuliah:[25000,40000,65000]},
-  paket:[["Koreksi ejaan & tata bahasa","6–12 jam"],["Koreksi + struktur + komentar","12–24 jam"],["Koreksi + saran revisi + cek plagiarisme","24–48 jam"]],
-  kartu:{SMP:["PR, esai, dan laporan sederhana.","6–24 jam"],SMA:["Makalah, esai, laporan praktikum, tugas bahasa.","12–36 jam"],Kuliah:["Jurnal, laporan lab, esai ilmiah.","24–48 jam"]}}};
+  harga:{SMP:[12000,22000],SMA:[15000,30000],Kuliah:[25000,50000]},
+  paket:[
+   ["Koreksi + saran perbaikan singkat","6–12 jam",["Koreksi ejaan, tata bahasa, dan kesalahan jawaban","Saran perbaikan singkat"]],
+   ["Koreksi + komentar detail, nilai, dan cek ulang","12–24 jam",["Semua isi paket Basic","Komentar detail per bagian atau soal","Saran revisi yang terarah","Nilai beserta alasannya","1x cek ulang setelah kamu merevisi"]]],
+  kartu:{SMP:["PR, esai, dan laporan sederhana.","6–24 jam"],SMA:["Makalah, esai, laporan praktikum, tugas bahasa.","6–24 jam"],Kuliah:["Jurnal, laporan lab, esai ilmiah.","6–24 jam"]}}};
 const JENIS={SMP:["PR","Esai","Laporan sederhana","Ringkasan"],SMA:["Makalah","Esai","Laporan praktikum","Tugas bahasa"],Kuliah:["Jurnal","Laporan lab","Esai ilmiah","Makalah"]};
 
 /* Portofolio: contoh hasil koreksimu.
    Tiap blok = 1 kartu. Ganti judul, deskripsi, dan jenisnya. Simpan foto di folder "Portofolio"
    (nama bebas, boleh tanpa ekstensi: .jpg .png .jpeg .webp dicari otomatis). Tambah blok baru untuk kartu baru.
-   jenjang: "SMP", "SMA", atau "Kuliah"   paket: "Basic", "Standard", atau "Premium" */
+   jenjang: "SMP", "SMA", atau "Kuliah"   paket: "Basic" atau "Lengkap" */
 const PORT=[
  {judul:"Judul portofolio 1",jenjang:"SMP",jenis:"Esai",paket:"Basic",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p1-1","Portofolio/p1-2","Portofolio/p1-3"]},
- {judul:"Judul portofolio 2",jenjang:"SMA",jenis:"Makalah",paket:"Standard",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p2-1","Portofolio/p2-2","Portofolio/p2-3"]},
- {judul:"Judul portofolio 3",jenjang:"Kuliah",jenis:"Jurnal",paket:"Premium",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p3-1","Portofolio/p3-2","Portofolio/p3-3"]}];
+ {judul:"Judul portofolio 2",jenjang:"SMA",jenis:"Makalah",paket:"Lengkap",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p2-1","Portofolio/p2-2","Portofolio/p2-3"]},
+ {judul:"Judul portofolio 3",jenjang:"Kuliah",jenis:"Jurnal",paket:"Lengkap",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p3-1","Portofolio/p3-2","Portofolio/p3-3"]}];
 
 /* Testimoni: 10 kartu. Tiap kartu punya judul, jenjang, dan paket yang dipilih pelanggan,
    lalu 2 sampai 3 foto bukti chat di bawahnya. Simpan foto di folder "Review" dengan nama t1-1, t1-2, t1-3, t2-1, dst.
@@ -301,7 +303,7 @@ function renderPrice(){
  const S=SERVICES.koreksi;
  $("#lvlTabs").innerHTML=LEVELS.map(k=>`<li class="nav-item"><button class="nav-link ${k==lvl?"active":""}" data-k="${k}">${k}</button></li>`).join("");
  $$("#lvlTabs button").forEach(b=>b.onclick=()=>{lvl=b.dataset.k;renderPrice()});
- $("#priceGrid").innerHTML=S.harga[lvl].map((p,i)=>`<div class="col-md-4"><div class="cardx price-card ${i==1?"pop":""}">${i==1?'<span class="badge text-bg-warning mb-2">Paling laris</span>':""}<h5>${PKG[i]}</h5><div class="price">${rp(p)}</div><p class="mt-2 mb-1">${esc(S.paket[i][0])}</p><p class="small text-secondary">Hasil dalam ${S.paket[i][1]}</p><button class="btn btn-primary w-100" data-pick="${i}">Pilih ${PKG[i]}</button></div></div>`).join("");
+ $("#priceGrid").innerHTML=S.harga[lvl].map((p,i)=>`<div class="col-md-6 col-lg-5"><div class="cardx price-card ${i==1?"pop":""}">${i==1?'<span class="badge text-bg-warning mb-2">Paling laris</span>':""}<h5>${PKG[i]}</h5><div class="price">${rp(p)}</div><p class="mt-2 mb-2 fw-semibold">${esc(S.paket[i][0])}</p><ul class="list-unstyled small mb-3">${S.paket[i][2].map(f=>`<li class="mb-1"><i class="bi bi-check-circle-fill text-success"></i> ${esc(f)}</li>`).join("")}</ul><p class="small text-secondary"><i class="bi bi-clock"></i> Hasil dalam ${S.paket[i][1]}</p><button class="btn btn-primary w-100" data-pick="${i}">Pilih ${PKG[i]}</button></div></div>`).join("");
  $$("[data-pick]").forEach(b=>b.onclick=()=>{$("#jenjang").value=lvl;fillJenis();$("#paket").value=PKG[b.dataset.pick];est();location.hash="order"});
 }
 renderPrice();
@@ -352,7 +354,7 @@ const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 $("#waFoot").href=waLink(waGreeting());
 $("#waOffer").innerHTML=LEVELS.map(l=>`<div class="small">• Koreksi Tugas ${l}, mulai ${rp(SERVICES.koreksi.harga[l][0])}</div>`).join("")+`<div class="small mt-1 text-secondary">Paket: ${PKG.join(", ")}</div>`;
 const WA_TOPICS=[
- ["bi-cash-coin","Tanya harga & paket","Halo Detectra 👋\nSaya ingin tahu detail harga dan perbedaan paket Basic, Standard, dan Premium untuk koreksi tugas. Boleh dijelaskan?"],
+ ["bi-cash-coin","Tanya harga & paket","Halo Detectra 👋\nSaya ingin tahu detail harga dan perbedaan paket Basic dan Lengkap untuk koreksi tugas. Boleh dijelaskan?"],
  ["bi-pencil-square","Mau order koreksi tugas","Halo Detectra 👋\nSaya ingin order koreksi tugas.\n\nJenjang: \nJenis tugas: \nPaket: \nDeadline: "],
  ["bi-clock","Tanya lama proses koreksi","Halo Detectra 👋\nBerapa lama proses koreksi untuk tugas saya? Saya butuh hasilnya sebelum deadline."],
  ["bi-chat-dots","Tanya hal lain",waGreeting()]];
