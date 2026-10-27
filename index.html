@@ -21,34 +21,45 @@ section{padding:72px 0}
 .btn,.form-control,.form-select{border-radius:12px}
 .navbar{backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bs-body-bg) 85%,transparent)}
 .brand{font-weight:700;color:#3B82F6!important}
+.navbar .nav-link.active{color:#3B82F6;font-weight:600;position:relative}
+.navbar .nav-link.active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:3px;border-radius:3px;background:#F59E0B}
 .hero{background:radial-gradient(circle at 85% 10%,rgba(245,158,11,.18),transparent 40%),radial-gradient(circle at 10% 90%,rgba(59,130,246,.18),transparent 45%);padding:96px 0 72px}
 .hero h1{font-weight:700;font-size:clamp(2rem,5vw,3.4rem);line-height:1.15}
-.mark{background:linear-gradient(transparent 62%,rgba(245,158,11,.5) 0);}
+.mark{background:linear-gradient(transparent 62%,rgba(245,158,11,.5) 0)}
 .cardx{background:var(--card);border-radius:var(--r);box-shadow:0 6px 24px rgba(0,0,0,.07);padding:24px;height:100%;transition:transform .25s,box-shadow .25s;border:1px solid rgba(128,128,128,.12)}
 .cardx:hover{transform:scale(1.03);box-shadow:0 12px 32px rgba(59,130,246,.18)}
-.ico{width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);color:#3B82F6;display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px}
+.ico{width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);color:#3B82F6;display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px;flex:none}
 .step{width:56px;height:56px;border-radius:50%;background:var(--amber);color:#111827;font:700 1.3rem Poppins;display:grid;place-items:center;margin:0 auto 12px}
 .price-card.pop{border:2px solid #3B82F6}
 .price{font:700 2rem Poppins}
-.price s{font-size:1rem;opacity:.5;font-weight:400}
 .reveal{opacity:0;transform:translateY(20px);transition:.6s}
 .reveal.in{opacity:1;transform:none}
-.wa-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:1030;transition:.2s}
-.wa-float:hover{transform:scale(1.1);color:#fff}
 .est{background:rgba(59,130,246,.1);border-radius:12px;padding:14px 16px}
-.accordion-item{border-radius:12px!important;overflow:hidden;margin-bottom:10px;border:1px solid rgba(128,128,128,.2)}
+.page{min-height:60vh}
 footer{background:#111827;color:#cbd5e1}
 footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
+.logo-foot{height:96px;width:auto;object-fit:contain;background:#fff;border-radius:14px;padding:2px 10px}
+/* WhatsApp */
+.wa-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;border:0;background:#25D366;color:#fff;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:1030;transition:.2s}
+.wa-float:hover{transform:scale(1.1);color:#fff}
+.wa-box{position:fixed;right:18px;bottom:86px;width:min(340px,calc(100vw - 36px));background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);z-index:1030;overflow:hidden;border:1px solid rgba(128,128,128,.2)}
+.wa-head{background:#075E54;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+.wa-body{background:rgba(37,211,102,.09);padding:12px;max-height:60vh;overflow:auto}
+.wa-bubble{background:var(--card);border-radius:12px 12px 12px 4px;padding:10px 12px;margin-bottom:8px;font-size:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.wa-box .btn-outline-success{background:var(--card)}
+/* Testimoni dan portofolio */
+.testi-photos{display:grid;gap:8px}
+.chat-th{aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid rgba(128,128,128,.25);cursor:zoom-in;padding:0;width:100%;transition:transform .2s}
+.chat-th:hover{transform:scale(1.04)}
+.chat-th img{width:100%;height:100%;object-fit:cover;display:block}
+.testi-empty,.pf-none{display:grid;place-content:center;justify-items:center;gap:6px;text-align:center;border:2px dashed rgba(128,128,128,.45);border-radius:12px;color:#6b7280;font-size:.85rem;padding:24px 10px}
+.testi-empty{aspect-ratio:16/9}
+.pf{cursor:pointer}
+.pf-cover{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:12px;border:1px solid rgba(128,128,128,.25);display:block}
+.pf-none{aspect-ratio:4/3;padding:10px}
+.pf-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#galCar .carousel-indicators{margin-bottom:.5rem}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
-.logo-foot{width:auto;object-fit:contain}
-.testi-ind button{background-color:#3B82F6!important;width:10px!important;height:10px!important;border-radius:50%;border:0!important;margin:0 4px!important;opacity:.3}.testi-ind .active{opacity:1;background-color:#F59E0B!important}
-.page{min-height:60vh}.navbar .nav-link.active{color:#3B82F6;font-weight:600;position:relative}.navbar .nav-link.active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:3px;border-radius:3px;background:#F59E0B}
-.pf del{color:#dc2626;background:rgba(220,38,38,.1);text-decoration:line-through;padding:0 2px;border-radius:4px}.pf ins{color:#16a34a;background:rgba(22,163,74,.12);text-decoration:none;padding:0 2px;border-radius:4px}
-.logo-foot{height:96px;background:#fff;border-radius:14px;padding:2px 10px}
-.proof{display:block;margin-bottom:6px;cursor:zoom-in;color:inherit}.proof img{width:100%;max-height:220px;object-fit:cover;object-position:top;border-radius:12px;border:1px solid rgba(128,128,128,.25);display:block;margin-bottom:6px}
-.chat-th{aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid rgba(128,128,128,.2);box-shadow:0 6px 24px rgba(0,0,0,.07);cursor:zoom-in;padding:0;width:100%;transition:transform .25s}.chat-th:hover{transform:scale(1.03)}.chat-th img{width:100%;height:100%;object-fit:cover;display:block}.chat-ph{height:100%;display:grid;place-content:center;gap:6px;text-align:center;padding:10px;font-size:.75rem;color:#6b7280;cursor:default}
-.wa-float{border:0}.wa-box{position:fixed;right:18px;bottom:86px;width:min(340px,calc(100vw - 36px));background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);z-index:1030;overflow:hidden;border:1px solid rgba(128,128,128,.2)}.wa-head{background:#075E54;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}.wa-body{background:rgba(37,211,102,.09);padding:12px;max-height:60vh;overflow:auto}.wa-bubble{background:var(--card);border-radius:12px 12px 12px 4px;padding:10px 12px;margin-bottom:8px;font-size:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.12)}.wa-box .btn-outline-success{background:var(--card)}
-.chat-th.empty{display:grid;place-content:center;justify-items:center;gap:4px;text-align:center;border:2px dashed rgba(128,128,128,.45);box-shadow:none;background:transparent;cursor:default;color:#6b7280;font-size:.8rem;padding:10px}.chat-th.empty:hover{transform:none}
 </style>
 </head>
 <body>
@@ -83,12 +94,9 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
    </div>
    <div class="col-lg-5">
     <div class="cardx reveal">
-     <div class="d-flex justify-content-between mb-2"><strong>Esai Bahasa Indonesia</strong><span class="badge text-bg-success">Selesai</span></div>
-     <p class="small text-secondary mb-3">Catatan korektor:</p>
-     <div class="small mb-2"><i class="bi bi-x-circle text-danger"></i> Paragraf 2 belum punya kalimat utama.</div>
-     <div class="small mb-2"><i class="bi bi-check-circle text-success"></i> Argumen di paragraf 3 sudah kuat.</div>
-     <div class="small mb-3"><i class="bi bi-pencil text-primary"></i> Ganti "di mana" dengan "tempat" pada kalimat 5.</div>
-     <div class="est d-flex justify-content-between"><span>Nilai</span><strong>82 / 100</strong></div>
+     <h5 class="mb-3">Pilih paket koreksimu</h5>
+     <div id="heroPaket"></div>
+     <div class="est small mt-3">Tersedia untuk SMP, SMA, dan Kuliah.</div>
     </div>
    </div>
   </div>
@@ -98,9 +106,9 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
  <div class="container">
   <h2 class="text-center fw-bold mb-5 reveal">Kenapa pilih Detectra?</h2>
   <div class="row g-4">
-   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-mortarboard"></i></div><h5>Korektor berpengalaman</h5><p class="small mb-0">Dikoreksi orang yang paham standar tugas tiap jenjang.</p></div></div>
-   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-lightning-charge"></i></div><h5>Cepat</h5><p class="small mb-0">Mulai dari 6 jam untuk tugas singkat.</p></div></div>
-   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-wallet2"></i></div><h5>Harga pelajar</h5><p class="small mb-0">Mulai Rp 12.000, tanpa biaya tersembunyi.</p></div></div>
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-card-checklist"></i></div><h5>Catatan jelas</h5><p class="small mb-0">Setiap koreksi disertai catatan revisi yang mudah dipahami.</p></div></div>
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-lightning-charge"></i></div><h5>Cepat</h5><p class="small mb-0">Koreksi singkat mulai dari 6 jam.</p></div></div>
+   <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-wallet2"></i></div><h5>Harga pelajar</h5><p class="small mb-0">Mulai <span data-min="all"></span>, tanpa biaya tersembunyi.</p></div></div>
    <div class="col-6 col-lg-3 reveal"><div class="cardx"><div class="ico"><i class="bi bi-shield-lock"></i></div><h5>Tugasmu aman</h5><p class="small mb-0">File hanya dipakai untuk koreksi dan tidak dibagikan.</p></div></div>
   </div>
  </div>
@@ -112,7 +120,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
   <div class="row g-4 text-center">
    <div class="col-md-4 reveal"><div class="step">1</div><h5>Kirim tugas</h5><p>Isi form order dan pilih paket.</p></div>
    <div class="col-md-4 reveal"><div class="step">2</div><h5>Kami koreksi</h5><p>Korektor memeriksa dan menulis catatan.</p></div>
-   <div class="col-md-4 reveal"><div class="step">3</div><h5>Terima hasil</h5><p>Hasil dikirim lewat WhatsApp atau email.</p></div>
+   <div class="col-md-4 reveal"><div class="step">3</div><h5>Terima hasil</h5><p>Hasil dikirim lewat WhatsApp.</p></div>
   </div>
  </div>
 </section>
@@ -120,7 +128,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
  <div class="container">
   <h2 class="text-center fw-bold mb-2">Testimoni</h2>
   <p class="text-center text-secondary mb-4">Percakapan dengan pelanggan Detectra.</p>
-  <div class="row g-3 justify-content-center" id="homeChat"></div>
+  <div class="row g-4" id="homeTesti"></div>
   <div class="text-center mt-4"><a href="#testimoni" class="btn btn-outline-primary">Lihat semua testimoni</a></div>
  </div>
 </section>
@@ -129,7 +137,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <main class="page" id="page-layanan">
 <section>
  <div class="container">
-  <h2 class="text-center fw-bold mb-2 reveal">Layanan</h2>
+  <h2 class="text-center fw-bold mb-2">Layanan</h2>
   <p class="text-center text-secondary mb-5">Pilih sesuai jenjangmu.</p>
   <div class="row g-4" id="svcGrid"></div>
  </div>
@@ -139,11 +147,8 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <main class="page" id="page-harga">
 <section class="bg-body-secondary">
  <div class="container">
-  <h2 class="text-center fw-bold mb-3 reveal">Harga</h2>
-  <div class="d-flex justify-content-center align-items-center gap-3 mb-4 flex-wrap">
-   <ul class="nav nav-pills" id="lvlTabs"></ul>
-   <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="disc"><label class="form-check-label" for="disc">Diskon pelajar 20%</label></div>
-  </div>
+  <h2 class="text-center fw-bold mb-3">Harga</h2>
+  <div class="d-flex justify-content-center mb-4"><ul class="nav nav-pills" id="lvlTabs"></ul></div>
   <div class="row g-4 justify-content-center" id="priceGrid"></div>
  </div>
 </section>
@@ -152,16 +157,17 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <main class="page" id="page-order">
 <section class="bg-body-secondary">
  <div class="container" style="max-width:760px">
-  <h2 class="text-center fw-bold mb-4">Order koreksi</h2>
+  <h2 class="text-center fw-bold mb-4">Order koreksi tugas</h2>
   <form id="orderForm" class="cardx" novalidate>
    <div class="row g-3">
     <div class="col-12"><label class="form-label" for="nama">Nama lengkap *</label><input id="nama" class="form-control" required minlength="3"><div class="invalid-feedback">Isi nama minimal 3 huruf.</div></div>
     <div class="col-12"><label class="form-label" for="kontak">No. WhatsApp atau email *</label><input id="kontak" class="form-control" placeholder="0812xxxx atau nama@email.com" required><div class="invalid-feedback">Isi nomor WhatsApp (9–14 digit) atau email yang valid.</div></div>
     <div class="col-md-6"><label class="form-label" for="jenjang">Jenjang *</label><select id="jenjang" class="form-select" required><option value="">Pilih jenjang</option><option>SMP</option><option>SMA</option><option>Kuliah</option></select><div class="invalid-feedback">Pilih jenjang.</div></div>
     <div class="col-md-6"><label class="form-label" for="jenis">Jenis tugas</label><select id="jenis" class="form-select"></select></div>
-    <div class="col-12"><label class="form-label" for="paket">Paket layanan</label><select id="paket" class="form-select"><option>Basic</option><option selected>Standard</option><option>Premium</option></select></div>
+    <div class="col-md-6"><label class="form-label" for="paket">Paket layanan</label><select id="paket" class="form-select"><option>Basic</option><option selected>Standard</option><option>Premium</option></select></div>
+    <div class="col-md-6"><label class="form-label" for="deadline">Deadline (opsional)</label><input id="deadline" type="date" class="form-control"></div>
     <div class="col-12"><div class="est d-flex justify-content-between align-items-center"><span>Estimasi biaya</span><strong id="estimasi" class="fs-5">Pilih jenjang dulu</strong></div></div>
-    <div class="col-12"><label class="form-label" for="file">Upload file (PDF, DOC, JPG, PNG – maks 10 MB)</label><input id="file" type="file" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"><div id="fileInfo" class="small mt-1 text-secondary"></div></div>
+    <div class="col-12"><label class="form-label" for="file">Upload file (PDF, DOC, JPG, PNG, maks 10 MB)</label><input id="file" type="file" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"><div id="fileInfo" class="small mt-1 text-secondary"></div></div>
     <div class="col-12"><label class="form-label" for="catatan">Catatan tambahan (boleh berisi link tugas)</label><textarea id="catatan" rows="3" class="form-control"></textarea></div>
     <div class="col-12 d-grid"><button type="button" class="btn btn-success btn-lg" data-send="wa"><i class="bi bi-whatsapp"></i> Kirim ke WhatsApp</button></div>
    </div>
@@ -174,12 +180,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <section>
  <div class="container">
   <h2 class="text-center fw-bold mb-2">Portofolio</h2>
-  <p class="text-center text-secondary mb-4">Contoh hasil koreksi dari berbagai jenjang dan jenis tugas.</p>
-  <div class="row g-3 text-center mb-4">
-   <div class="col-4"><div class="cardx py-3"><div class="price text-primary">500+</div><div class="small">Tugas dikoreksi</div></div></div>
-   <div class="col-4"><div class="cardx py-3"><div class="price text-primary">4,9</div><div class="small">Rating rata-rata</div></div></div>
-   <div class="col-4"><div class="cardx py-3"><div class="price text-primary">3</div><div class="small">Jenjang</div></div></div>
-  </div>
+  <p class="text-center text-secondary mb-4">Contoh hasil koreksi Detectra. Klik kartu untuk melihat hasilnya.</p>
   <div class="d-flex justify-content-center gap-2 flex-wrap mb-4" id="portFilter"></div>
   <div class="row g-4" id="portGrid"></div>
  </div>
@@ -188,16 +189,16 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 
 <main class="page" id="page-testimoni">
 <section class="bg-body-secondary">
- <div class="container" style="max-width:900px">
+ <div class="container">
   <h2 class="text-center fw-bold mb-2">Testimoni</h2>
-  <p class="text-center text-secondary mb-4">Percakapan dengan pelanggan Detectra. Klik gambar untuk memperbesar.</p>
-  <div class="row g-3" id="chatGrid"></div>
+  <p class="text-center text-secondary mb-4">Percakapan dengan pelanggan Detectra. Klik foto untuk memperbesar.</p>
+  <div class="row g-4" id="testiGrid"></div>
  </div>
 </section>
 </main>
 
 <div id="ctaStrip" class="py-5 text-center" hidden style="background:linear-gradient(135deg,#3B82F6,#2563EB);color:#fff">
- <div class="container"><h3 class="fw-bold">Siap kirim tugasmu?</h3><p class="mb-3">Pilih paket, isi form, dan hasil koreksi dikirim lewat WhatsApp atau email.</p><a href="#order" class="btn btn-amber btn-lg px-4">Order Sekarang</a></div>
+ <div class="container"><h3 class="fw-bold">Siap kirim tugasmu?</h3><p class="mb-3">Pilih paket, isi form, dan hasil koreksi dikirim lewat WhatsApp.</p><a href="#order" class="btn btn-amber btn-lg px-4">Order Sekarang</a></div>
 </div>
 
 <footer class="py-5">
@@ -222,9 +223,9 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 </div>
 <button type="button" class="wa-float" id="waFloat" aria-label="Chat WhatsApp" aria-expanded="false" aria-controls="waBox"><i class="bi bi-whatsapp"></i></button>
 
-<div class="modal fade" id="imgModal" tabindex="-1" aria-label="Bukti chat"><div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content" style="border-radius:16px;overflow:hidden">
- <button type="button" class="btn-close position-absolute top-0 end-0 m-3 bg-white p-2 rounded-circle" style="z-index:2" data-bs-dismiss="modal" aria-label="Tutup"></button>
- <img id="imgModalSrc" src="" alt="Bukti chat WhatsApp" class="w-100" style="max-height:85vh;object-fit:contain;background:#111">
+<div class="modal fade" id="galModal" tabindex="-1" aria-labelledby="galTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"><div class="modal-content" style="border-radius:16px;overflow:hidden">
+ <div class="modal-header"><div><h5 class="modal-title mb-1" id="galTitle"></h5><div id="galMeta" class="d-flex gap-1 flex-wrap"></div></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+ <div class="modal-body p-0"><div id="galCar" class="carousel slide"></div><p id="galDesc" class="p-3 mb-0 small"></p></div>
 </div></div></div>
 
 <div class="modal fade" id="okModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content text-center p-4" style="border-radius:16px">
@@ -239,40 +240,78 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+/* ===== DATA YANG BISA KAMU UBAH ===== */
 const WA="6285712833094", MAIL="admin@koreksitugas.id";
+const PKG=["Basic","Standard","Premium"];
+const LEVELS=["SMP","SMA","Kuliah"];
+const SERVICES={
+ koreksi:{nama:"Koreksi Tugas",icon:"bi-pencil-square",
+  sub:"Tugasmu diperiksa, lalu kamu menerima catatan revisi, penilaian, dan saran perbaikan.",
+  harga:{SMP:[12000,20000,32000],SMA:[15000,28000,45000],Kuliah:[25000,40000,65000]},
+  paket:[["Koreksi ejaan & tata bahasa","6–12 jam"],["Koreksi + struktur + komentar","12–24 jam"],["Koreksi + saran revisi + cek plagiarisme","24–48 jam"]],
+  kartu:{SMP:["PR, esai, dan laporan sederhana.","6–24 jam"],SMA:["Makalah, esai, laporan praktikum, tugas bahasa.","12–36 jam"],Kuliah:["Jurnal, laporan lab, esai ilmiah.","24–48 jam"]}}};
+const JENIS={SMP:["PR","Esai","Laporan sederhana","Ringkasan"],SMA:["Makalah","Esai","Laporan praktikum","Tugas bahasa"],Kuliah:["Jurnal","Laporan lab","Esai ilmiah","Makalah"]};
+
+/* Portofolio: contoh hasil koreksimu.
+   Tiap blok = 1 kartu. Ganti judul, deskripsi, dan jenisnya. Simpan foto di folder "Portofolio"
+   (nama bebas, boleh tanpa ekstensi: .jpg .png .jpeg .webp dicari otomatis). Tambah blok baru untuk kartu baru.
+   jenjang: "SMP", "SMA", atau "Kuliah"   paket: "Basic", "Standard", atau "Premium" */
+const PORT=[
+ {judul:"Judul portofolio 1",jenjang:"SMP",jenis:"Esai",paket:"Basic",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p1-1","Portofolio/p1-2","Portofolio/p1-3"]},
+ {judul:"Judul portofolio 2",jenjang:"SMA",jenis:"Makalah",paket:"Standard",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p2-1","Portofolio/p2-2","Portofolio/p2-3"]},
+ {judul:"Judul portofolio 3",jenjang:"Kuliah",jenis:"Jurnal",paket:"Premium",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p3-1","Portofolio/p3-2","Portofolio/p3-3"]}];
+
+/* Testimoni: 10 kartu. Tiap kartu punya judul, jenjang, dan paket yang dipilih pelanggan,
+   lalu 2 sampai 3 foto bukti chat di bawahnya. Simpan foto di folder "Review" dengan nama t1-1, t1-2, t1-3, t2-1, dst.
+   Isi judul/jenjang/paket pada kartu yang sudah ada fotonya. Kartu yang fotonya kosong tampil sebagai kotak "segera hadir". */
+const TESTI=[
+ {judul:"",jenjang:"",paket:"",foto:["Review/t1-1","Review/t1-2","Review/t1-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t2-1","Review/t2-2","Review/t2-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t3-1","Review/t3-2","Review/t3-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t4-1","Review/t4-2","Review/t4-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t5-1","Review/t5-2","Review/t5-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t6-1","Review/t6-2","Review/t6-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t7-1","Review/t7-2","Review/t7-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t8-1","Review/t8-2","Review/t8-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t9-1","Review/t9-2","Review/t9-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t10-1","Review/t10-2","Review/t10-3"]},
+];
+/* ===== AKHIR DATA ===== */
+
 const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const rp=n=>"Rp "+n.toLocaleString("id-ID");
-const PRICE={SMP:[12000,20000,32000],SMA:[15000,28000,45000],Kuliah:[25000,40000,65000]};
-const PKG=["Basic","Standard","Premium"];
-const PDESC=[["Koreksi ejaan &amp; tata bahasa","Hasil dalam 6–12 jam"],["Koreksi + struktur + komentar","Hasil dalam 12–24 jam"],["Koreksi + saran revisi + cek plagiarisme","Hasil dalam 24–48 jam"]];
-const SVC=[
- {k:"SMP",t:"Koreksi Tugas SMP",d:"PR, esai, dan laporan sederhana.",e:"6–24 jam",i:"bi-pencil"},
- {k:"SMA",t:"Koreksi Tugas SMA",d:"Makalah, esai, laporan praktikum, tugas bahasa.",e:"12–36 jam",i:"bi-journal-text"},
- {k:"Kuliah",t:"Koreksi Tugas Kuliah",d:"Jurnal, laporan lab, esai ilmiah.",e:"24–48 jam",i:"bi-mortarboard"}];
-const JENIS={SMP:["PR","Esai","Laporan sederhana"],SMA:["Makalah","Esai","Laporan praktikum","Tugas bahasa"],Kuliah:["Jurnal","Laporan lab","Esai ilmiah","Skripsi/makalah"]};
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const SVC_KEYS=Object.keys(SERVICES);
+const minPrice=k=>Math.min(...Object.values(SERVICES[k].harga).map(a=>a[0]));
+const badge=(t,c)=>t?`<span class="badge text-bg-${c}">${esc(t)}</span>`:"";
 let lvl="SMP";
 
+// Harga terendah di teks
+$$("[data-min]").forEach(e=>{const k=e.dataset.min;e.textContent=rp(k==="all"?Math.min(...SVC_KEYS.map(minPrice)):minPrice(k))});
 
-// Service cards
-$("#svcGrid").innerHTML=SVC.map(s=>`<div class="col-md-4 reveal"><div class="cardx d-flex flex-column"><div class="ico"><i class="bi ${s.i}"></i></div><h4>${s.t}</h4><p>${s.d}</p><p class="small text-secondary mt-auto"><i class="bi bi-clock"></i> Estimasi ${s.e}</p><a href="#harga" class="btn btn-outline-primary" data-lvl="${s.k}">Lihat harga ${s.k}</a></div></div>`).join("");
+// Kartu layanan
+const S0=SERVICES.koreksi;
+$("#svcGrid").innerHTML=LEVELS.map(l=>`<div class="col-md-4 reveal"><div class="cardx d-flex flex-column"><div class="ico"><i class="bi ${S0.icon}"></i></div><h4>${S0.nama} ${l}</h4><p>${S0.kartu[l][0]}</p><p class="small text-secondary mt-auto"><i class="bi bi-clock"></i> Estimasi ${S0.kartu[l][1]}</p><a href="#harga" class="btn btn-outline-primary" data-lvl="${l}">Lihat harga ${l}</a></div></div>`).join("");
 $$("[data-lvl]").forEach(b=>b.onclick=()=>{lvl=b.dataset.lvl;renderPrice()});
+// Ringkasan paket di hero
+$("#heroPaket").innerHTML=PKG.map((p,i)=>`<div class="d-flex justify-content-between align-items-start gap-3 mb-2"><div><strong>${p}</strong><div class="small text-secondary">${esc(S0.paket[i][0])}</div></div><div class="small text-nowrap">mulai ${rp(Math.min(...LEVELS.map(l=>S0.harga[l][i])))}</div></div>`).join("");
 
-// Prices
+// Harga
 function renderPrice(){
- const d=$("#disc").checked;
- $("#lvlTabs").innerHTML=Object.keys(PRICE).map(k=>`<li class="nav-item"><button class="nav-link ${k==lvl?"active":""}" data-k="${k}">${k}</button></li>`).join("");
+ const S=SERVICES.koreksi;
+ $("#lvlTabs").innerHTML=LEVELS.map(k=>`<li class="nav-item"><button class="nav-link ${k==lvl?"active":""}" data-k="${k}">${k}</button></li>`).join("");
  $$("#lvlTabs button").forEach(b=>b.onclick=()=>{lvl=b.dataset.k;renderPrice()});
- $("#priceGrid").innerHTML=PRICE[lvl].map((p,i)=>`<div class="col-md-4"><div class="cardx price-card ${i==1?"pop":""}">${i==1?'<span class="badge text-bg-warning mb-2">Paling laris</span>':""}<h5>${PKG[i]}</h5><div class="price">${d?`<s>${rp(p)}</s><br>${rp(p*.8)}`:rp(p)}</div><p class="mt-2 mb-1">${PDESC[i][0]}</p><p class="small text-secondary">${PDESC[i][1]}</p><button class="btn btn-primary w-100" data-pick="${i}">Pilih ${PKG[i]}</button></div></div>`).join("");
+ $("#priceGrid").innerHTML=S.harga[lvl].map((p,i)=>`<div class="col-md-4"><div class="cardx price-card ${i==1?"pop":""}">${i==1?'<span class="badge text-bg-warning mb-2">Paling laris</span>':""}<h5>${PKG[i]}</h5><div class="price">${rp(p)}</div><p class="mt-2 mb-1">${esc(S.paket[i][0])}</p><p class="small text-secondary">Hasil dalam ${S.paket[i][1]}</p><button class="btn btn-primary w-100" data-pick="${i}">Pilih ${PKG[i]}</button></div></div>`).join("");
  $$("[data-pick]").forEach(b=>b.onclick=()=>{$("#jenjang").value=lvl;fillJenis();$("#paket").value=PKG[b.dataset.pick];est();location.hash="order"});
 }
-$("#disc").onchange=()=>{renderPrice();est()};
 renderPrice();
 
-// Order form
-function fillJenis(){const j=$("#jenjang").value;$("#jenis").innerHTML=(JENIS[j]||["Pilih jenjang dulu"]).map(x=>`<option>${x}</option>`).join("")}
+// Form order
+function fillJenis(){const j=$("#jenjang").value;$("#jenis").innerHTML=(j?[...JENIS[j],"Lainnya (tulis di catatan)"]:["Pilih jenjang dulu"]).map(x=>`<option>${x}</option>`).join("")}
 function est(){const j=$("#jenjang").value;if(!j){$("#estimasi").textContent="Pilih jenjang dulu";return}
- let p=PRICE[j][PKG.indexOf($("#paket").value)];if($("#disc").checked)p*=.8;$("#estimasi").textContent=rp(p)+($("#disc").checked?" (diskon 20%)":"")}
+ $("#estimasi").textContent=rp(SERVICES.koreksi.harga[j][PKG.indexOf($("#paket").value)])}
 $("#jenjang").onchange=()=>{fillJenis();est();chk($("#jenjang"))};$("#paket").onchange=est;fillJenis();
+$("#deadline").min=new Date().toISOString().slice(0,10);
 
 const validators={
  nama:v=>v.trim().length>=3,
@@ -288,46 +327,45 @@ $("#file").onchange=e=>{const f=e.target.files[0],o=$("#fileInfo");if(!f){o.text
 
 function toast(m,t="success"){const el=$("#toast");el.className=`toast align-items-center border-0 text-white text-bg-${t}`;$("#toastMsg").textContent=m;bootstrap.Toast.getOrCreateInstance(el,{delay:3500}).show()}
 
-const plain=t=>t.replace(/&amp;/g,"&");
 function waGreeting(){
- const lv=Object.keys(PRICE).map(k=>`• Koreksi Tugas ${k}: mulai ${rp(PRICE[k][0])}`).join("\n");
- const pk=PKG.map((p,i)=>`• ${p}: ${plain(PDESC[i][0])}`).join("\n");
+ const lv=LEVELS.map(l=>`• Koreksi Tugas ${l}: mulai ${rp(SERVICES.koreksi.harga[l][0])}`).join("\n");
+ const pk=SERVICES.koreksi.paket.map((p,i)=>`• ${PKG[i]}: ${p[0]}`).join("\n");
  return `Halo Detectra 👋\n\nSaya lihat website Detectra dan ingin tanya soal jasa koreksi tugas. Boleh dibantu?\n\n*Layanan yang saya lihat*\n${lv}\n\n*Pilihan paket*\n${pk}\n\n*Yang ingin saya konsultasikan*\nJenjang: \nJenis tugas: \nDeadline: \n\nTerima kasih 🙏`}
-function buildMsg(kode){const f=$("#file").files[0],pi=PKG.indexOf($("#paket").value);
- return `Halo Detectra 👋\nSaya ingin memesan jasa koreksi tugas.\n\n*Kode order:* ${kode}\n\n*Data pemesan*\nNama: ${$("#nama").value.trim()}\nKontak: ${$("#kontak").value.trim()}\n\n*Detail pesanan*\nJenjang: ${$("#jenjang").value}\nJenis tugas: ${$("#jenis").value}\nPaket: ${$("#paket").value} (${plain(PDESC[pi][0])})\nEstimasi biaya: ${$("#estimasi").textContent}\nEstimasi selesai: ${PDESC[pi][1].replace("Hasil dalam ","")}\nFile: ${f?f.name+" (akan saya kirim di chat ini)":"-"}\nCatatan: ${$("#catatan").value.trim()||"-"}\n\nMohon konfirmasi ketersediaan, total biaya, dan cara pembayarannya ya. Terima kasih 🙏`}
+function buildMsg(kode){const f=$("#file").files[0],S=SERVICES.koreksi,pi=PKG.indexOf($("#paket").value),dl=$("#deadline").value;
+ const tgl=dl?new Date(dl+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}):"-";
+ return `Halo Detectra 👋\nSaya ingin memesan jasa koreksi tugas.\n\n*Kode order:* ${kode}\n\n*Data pemesan*\nNama: ${$("#nama").value.trim()}\nKontak: ${$("#kontak").value.trim()}\n\n*Detail pesanan*\nJenjang: ${$("#jenjang").value}\nJenis tugas: ${$("#jenis").value}\nPaket: ${$("#paket").value} (${S.paket[pi][0]})\nEstimasi biaya: ${$("#estimasi").textContent}\nEstimasi selesai: ${S.paket[pi][1]}\nDeadline: ${tgl}\nFile: ${f?f.name+" (akan saya kirim di chat ini)":"-"}\nCatatan: ${$("#catatan").value.trim()||"-"}\n\nMohon konfirmasi ketersediaan, total biaya, dan cara pembayarannya ya. Terima kasih 🙏`}
 $$("[data-send]").forEach(btn=>btn.onclick=()=>{
  const ok=["nama","kontak","jenjang"].map(id=>chk($("#"+id))).every(Boolean);
  if(!ok){toast("Lengkapi data yang wajib diisi.","danger");return}
- const kode="DTX-"+Math.random().toString(36).slice(2,8).toUpperCase(), msg=buildMsg(kode), type=btn.dataset.send;
+ const kode="DTX-"+Math.random().toString(36).slice(2,8).toUpperCase(), msg=buildMsg(kode);
  const old=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner-border spinner-border-sm"></span> Memproses...';
  setTimeout(()=>{
   const url=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
   if(!window.open(url,"_blank"))location.href=url;
   btn.disabled=false;btn.innerHTML=old;
   $("#okKode").textContent=kode;new bootstrap.Modal("#okModal").show();toast("Pesanan berhasil dibuat.");
-  $("#orderForm").reset();$$("#orderForm .is-valid").forEach(e=>e.classList.remove("is-valid"));$("#fileInfo").textContent="";fillJenis();est();
+  $("#orderForm").reset();$$("#orderForm .is-valid,#orderForm .is-invalid").forEach(e=>e.classList.remove("is-valid","is-invalid"));$("#fileInfo").textContent="";fillJenis();est();
  },1200)});
-
-
 
 // WhatsApp: widget "ada yang bisa dibantu"
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 $("#waFoot").href=waLink(waGreeting());
-$("#waOffer").innerHTML=Object.keys(PRICE).map(k=>`<div class="small">• Koreksi Tugas ${k}, mulai ${rp(PRICE[k][0])}</div>`).join("")+`<div class="small mt-1 text-secondary">Paket: ${PKG.join(", ")}</div>`;
+$("#waOffer").innerHTML=LEVELS.map(l=>`<div class="small">• Koreksi Tugas ${l}, mulai ${rp(SERVICES.koreksi.harga[l][0])}</div>`).join("")+`<div class="small mt-1 text-secondary">Paket: ${PKG.join(", ")}</div>`;
 const WA_TOPICS=[
- ["bi-cash-coin","Tanya harga & paket","Halo Detectra 👋\nSaya ingin tahu detail harga dan perbedaan paket Basic, Standard, dan Premium. Boleh dijelaskan?"],
+ ["bi-cash-coin","Tanya harga & paket","Halo Detectra 👋\nSaya ingin tahu detail harga dan perbedaan paket Basic, Standard, dan Premium untuk koreksi tugas. Boleh dijelaskan?"],
  ["bi-pencil-square","Mau order koreksi tugas","Halo Detectra 👋\nSaya ingin order koreksi tugas.\n\nJenjang: \nJenis tugas: \nPaket: \nDeadline: "],
- ["bi-clock","Tanya lama pengerjaan","Halo Detectra 👋\nBerapa lama proses koreksi untuk tugas saya? Saya butuh hasilnya sebelum deadline."],
+ ["bi-clock","Tanya lama proses koreksi","Halo Detectra 👋\nBerapa lama proses koreksi untuk tugas saya? Saya butuh hasilnya sebelum deadline."],
  ["bi-chat-dots","Tanya hal lain",waGreeting()]];
 $("#waQuick").innerHTML=WA_TOPICS.map(t=>`<a class="btn btn-outline-success btn-sm text-start" target="_blank" rel="noopener" href="${waLink(t[2])}"><i class="bi ${t[0]}"></i> ${t[1]}</a>`).join("");
-function waToggle(open){const b=$("#waBox");b.hidden=!open;$("#waFloat").setAttribute("aria-expanded",open)}
+function waToggle(open){$("#waBox").hidden=!open;$("#waFloat").setAttribute("aria-expanded",open)}
 $("#waFloat").onclick=()=>waToggle($("#waBox").hidden);
 $("#waClose").onclick=()=>waToggle(false);
 addEventListener("keydown",e=>{if(e.key=="Escape")waToggle(false)});
 
 // Dark mode
 function setTheme(t){document.documentElement.dataset.bsTheme=t;$("#themeBtn").innerHTML=`<i class="bi bi-${t=="dark"?"sun":"moon-stars"}"></i>`;try{localStorage.setItem("dtx_theme",t)}catch(e){}}
-setTheme(localStorage.getItem("dtx_theme")||"light");
+let savedTheme="light";try{savedTheme=localStorage.getItem("dtx_theme")||"light"}catch(e){}
+setTheme(savedTheme);
 $("#themeBtn").onclick=()=>setTheme(document.documentElement.dataset.bsTheme=="dark"?"light":"dark");
 
 // Fade-in on scroll
@@ -335,43 +373,55 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 $$(".reveal").forEach(el=>io.observe(el));
 document.documentElement.style.scrollBehavior="smooth";
 
-// Portofolio
-const PORT=[
- {k:"SMP",j:"Esai Bahasa Indonesia",p:"Standard",a:"Kemaren aku pergi ke pantai bersama keluarga, disana sangat rame.",b:"Kemarin aku pergi ke pantai bersama keluarga. Di sana sangat ramai.",n:"68 → 85",c:"Ejaan diperbaiki dan kalimat dipecah agar lebih jelas."},
- {k:"SMP",j:"Laporan sederhana",p:"Basic",a:"Percobaan kami membuat air jadi panas dan gelembungnya muncul.",b:"Dalam percobaan ini, air dipanaskan hingga muncul gelembung yang menandakan air mendidih.",n:"70 → 84",c:"Istilah diperjelas dan kalimat dibuat lebih ilmiah."},
- {k:"SMA",j:"Makalah",p:"Standard",a:"Pendidikan itu penting sekali bagi semua orang karena penting.",b:"Pendidikan berperan penting dalam membentuk kualitas sumber daya manusia.",n:"72 → 88",c:"Pengulangan dihapus dan kalimat dibuat lebih formal."},
- {k:"SMA",j:"Laporan praktikum",p:"Premium",a:"Air dipanaskan lalu naik suhunya.",b:"Air dipanaskan selama 10 menit hingga suhunya naik dari 27°C menjadi 90°C.",n:"75 → 90",c:"Data pengamatan ditambahkan dengan satuan yang tepat."},
- {k:"Kuliah",j:"Jurnal ilmiah",p:"Premium",a:"Penelitian ini sangat bagus dan hasilnya benar.",b:"Hasil penelitian menunjukkan peningkatan signifikan (p &lt; 0,05) pada kelompok eksperimen.",n:"74 → 91",c:"Klaim diganti dengan data dan hasil uji statistik."},
- {k:"Kuliah",j:"Esai ilmiah",p:"Standard",a:"Menurut saya media sosial buruk untuk semua orang.",b:"Beberapa studi menunjukkan penggunaan media sosial berlebihan berkaitan dengan penurunan kualitas tidur remaja.",n:"70 → 86",c:"Opini diperkuat dengan rujukan dan dibuat lebih spesifik."}];
-let pf="Semua";
-function renderPort(){
- $("#portFilter").innerHTML=["Semua","SMP","SMA","Kuliah"].map(x=>`<button class="btn btn-sm ${x==pf?"btn-primary":"btn-outline-primary"} rounded-pill px-3" data-f="${x}">${x}</button>`).join("");
- $$("#portFilter button").forEach(b=>b.onclick=()=>{pf=b.dataset.f;renderPort()});
- $("#portGrid").innerHTML=PORT.filter(x=>pf=="Semua"||x.k==pf).map(x=>`<div class="col-md-6 col-lg-4"><div class="cardx pf d-flex flex-column"><div class="d-flex justify-content-between mb-2"><span class="badge text-bg-primary">${x.k}</span><span class="badge text-bg-warning">${x.p}</span></div><h5>${x.j}</h5><p class="small mb-1"><strong>Sebelum:</strong> <del>${x.a}</del></p><p class="small mb-2"><strong>Sesudah:</strong> <ins>${x.b}</ins></p><p class="small text-secondary">${x.c}</p><div class="est d-flex justify-content-between mt-auto"><span>Nilai</span><strong>${x.n}</strong></div></div></div>`).join("");}
-renderPort();
+// Foto: cari gambar yang benar-benar ada (ekstensi dicoba otomatis bila tidak ditulis)
+const EXTS=["jpg","png","jpeg","webp"];
+function probe(base){
+ const list=/\.\w{2,4}$/.test(base)?[base]:EXTS.map(e=>base+"."+e);
+ return new Promise(res=>{let i=0;(function next(){
+  if(i>=list.length)return res(null);
+  const im=new Image();im.onload=()=>res(list[i]);im.onerror=()=>{i++;next()};im.src=list[i]})()});
+}
+const probeAll=bases=>Promise.all(bases.map(probe)).then(r=>r.filter(Boolean));
 
-// Testimoni: 10 slot bukti chat. Simpan gambar di folder "Review" dengan nama chat1 sampai chat10
-// (format .jpg, .png, .jpeg, atau .webp). Slot yang gambarnya belum ada tampil sebagai kotak kosong.
-const CHAT=Array.from({length:10},(_,i)=>`Review/chat${i+1}`);
-const CHAT_EXT=["jpg","png","jpeg","webp"], HOME_MAX=4;
-function chatSync(){
- [...$("#homeChat").children].forEach((c,i)=>c.hidden=i>=HOME_MAX);
- $("#homeRev").hidden=$("#homeChat").children.length==0;
+// Galeri carousel (dipakai portofolio dan testimoni)
+function openGallery(o){
+ $("#galTitle").textContent=o.judul;$("#galMeta").innerHTML=o.badges||"";
+ $("#galDesc").textContent=o.deskripsi||"";$("#galDesc").hidden=!o.deskripsi;
+ const car=$("#galCar"),old=bootstrap.Carousel.getInstance(car);if(old)old.dispose();
+ const n=o.foto.length,st=o.start||0;
+ car.innerHTML=n?`${n>1?`<div class="carousel-indicators">${o.foto.map((_,i)=>`<button type="button" data-bs-target="#galCar" data-bs-slide-to="${i}" ${i==st?'class="active" aria-current="true"':""} aria-label="Foto ${i+1}"></button>`).join("")}</div>`:""}<div class="carousel-inner">${o.foto.map((src,i)=>`<div class="carousel-item${i==st?" active":""}"><img src="${esc(src)}" class="d-block w-100" alt="${esc(o.judul)}, foto ${i+1}" style="max-height:70vh;object-fit:contain;background:#111"></div>`).join("")}</div>${n>1?'<button class="carousel-control-prev" type="button" data-bs-target="#galCar" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Sebelumnya</span></button><button class="carousel-control-next" type="button" data-bs-target="#galCar" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Berikutnya</span></button>':""}`:'<div class="text-center text-secondary py-5">Foto belum ditambahkan.</div>';
+ if(n>1)new bootstrap.Carousel(car,{interval:false,touch:true});
+ bootstrap.Modal.getOrCreateInstance("#galModal").show();
 }
-function drawChat(box,list,keepEmpty){
- box.innerHTML=list.map((base,i)=>{const src=/\.\w+$/.test(base)?base:base+"."+CHAT_EXT[0];
-  return `<div class="col-6 col-md-3"><button type="button" class="chat-th" data-n="${i+1}" data-base="${base}" data-try="0" data-src="${src}" aria-label="Perbesar testimoni ${i+1}"><img src="${src}" alt="Testimoni pelanggan ${i+1}"></button></div>`}).join("");
- $$(".chat-th",box).forEach(b=>{
-  const im=b.querySelector("img"),base=b.dataset.base,auto=!/\.\w+$/.test(base);
-  im.onerror=()=>{
-   const n=+b.dataset.try+1;
-   if(auto&&n<CHAT_EXT.length){b.dataset.try=n;b.dataset.src=base+"."+CHAT_EXT[n];im.src=b.dataset.src;return}
-   if(keepEmpty){const ph=document.createElement("div");ph.className="chat-th empty";ph.setAttribute("aria-label","Slot testimoni "+b.dataset.n+" masih kosong");ph.innerHTML=`<i class="bi bi-chat-square-text fs-2"></i><span class="fw-semibold">Testimoni ${b.dataset.n}</span><span>Segera hadir</span>`;b.replaceWith(ph);return}
-   b.closest(".col-6").remove();chatSync()};
-  b.onclick=()=>{$("#imgModalSrc").src=b.dataset.src;bootstrap.Modal.getOrCreateInstance("#imgModal").show()};
- });
+
+// Portofolio
+let pf="Semua",portData=[];
+function renderPort(){
+ $("#portFilter").innerHTML=["Semua",...LEVELS].map(x=>`<button class="btn btn-sm ${x==pf?"btn-primary":"btn-outline-primary"} rounded-pill px-3" data-f="${x}">${x}</button>`).join("");
+ $$("#portFilter button").forEach(b=>b.onclick=()=>{pf=b.dataset.f;renderPort()});
+ const list=portData.filter(x=>pf=="Semua"||x.p.jenjang==pf);
+ $("#portGrid").innerHTML=list.length?list.map(({p,fotos},k)=>`<div class="col-md-6 col-lg-4"><div class="cardx pf d-flex flex-column" role="button" tabindex="0" data-k="${k}" aria-label="Lihat hasil: ${esc(p.judul)}">${fotos.length?`<img class="pf-cover" src="${esc(fotos[0])}" alt="${esc(p.judul)}">`:'<div class="pf-cover pf-none"><i class="bi bi-image fs-1"></i><span>Foto belum ditambahkan</span></div>'}<div class="d-flex gap-1 flex-wrap my-2">${badge(p.jenjang,"primary")}${badge(p.jenis,"info")}${badge(p.paket?"Paket "+p.paket:"","warning")}</div><h5>${esc(p.judul)}</h5><p class="small text-secondary pf-desc">${esc(p.deskripsi||"")}</p><span class="btn btn-outline-primary btn-sm mt-auto">Lihat contoh hasil${fotos.length>1?` (${fotos.length} foto)`:""}</span></div></div>`).join(""):'<p class="text-center text-secondary">Belum ada portofolio untuk pilihan ini.</p>';
+ $$("#portGrid .pf").forEach(c=>{const {p,fotos}=list[+c.dataset.k];
+  const open=()=>openGallery({judul:p.judul,badges:badge(p.jenjang,"primary")+badge(p.jenis,"info")+badge(p.paket?"Paket "+p.paket:"","warning"),deskripsi:p.deskripsi,foto:fotos});
+  c.onclick=open;c.onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();open()}}});
 }
-drawChat($("#chatGrid"),CHAT,true);drawChat($("#homeChat"),CHAT);chatSync();
+Promise.all(PORT.map(p=>probeAll(p.foto||[]))).then(r=>{portData=PORT.map((p,i)=>({p,fotos:r[i]}));renderPort()});
+
+// Testimoni
+function testiCards(items,showEmpty){
+ return items.map(({t,i,fotos})=>`<div class="col-md-6 col-lg-4"><div class="cardx testi" data-i="${i}"><h5 class="mb-2">${esc(t.judul||"Testimoni "+(i+1))}</h5><div class="d-flex gap-1 flex-wrap mb-3">${badge(t.jenjang,"primary")}${badge(t.paket?"Paket "+t.paket:"","warning")}</div>${fotos.length?`<div class="testi-photos" style="grid-template-columns:repeat(${Math.max(fotos.length,2)},1fr)">${fotos.map((s,k)=>`<button type="button" class="chat-th" data-k="${k}" aria-label="Perbesar foto ${k+1} dari testimoni ${i+1}"><img src="${esc(s)}" alt="Bukti chat ${k+1}"></button>`).join("")}</div>`:'<div class="testi-empty"><i class="bi bi-chat-square-text fs-2"></i><span>Bukti chat segera hadir</span></div>'}</div></div>`).join("");
+}
+function wireTesti(box,items){
+ $$(".testi",box).forEach(c=>{const it=items.find(x=>x.i==+c.dataset.i),t=it.t;
+  $$(".chat-th",c).forEach(b=>b.onclick=()=>openGallery({judul:t.judul||"Testimoni "+(it.i+1),badges:badge(t.jenjang,"primary")+badge(t.paket?"Paket "+t.paket:"","warning"),foto:it.fotos,start:+b.dataset.k}))});
+}
+Promise.all(TESTI.map(t=>probeAll(t.foto||[]))).then(r=>{
+ const all=TESTI.map((t,i)=>({t,i,fotos:r[i]}));
+ $("#testiGrid").innerHTML=testiCards(all);wireTesti($("#testiGrid"),all);
+ const filled=all.filter(x=>x.fotos.length).slice(0,3);
+ $("#homeRev").hidden=!filled.length;
+ $("#homeTesti").innerHTML=testiCards(filled);wireTesti($("#homeTesti"),filled);
+});
 
 // Router: tiap menu menampilkan halamannya sendiri
 const PAGES={home:"Beranda",layanan:"Layanan",harga:"Harga",order:"Order",portofolio:"Portofolio",testimoni:"Testimoni"};
