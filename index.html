@@ -59,6 +59,9 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 .pf-none{aspect-ratio:4/3;padding:10px}
 .pf-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #galCar .carousel-indicators{margin-bottom:.5rem}
+.pf-gen{display:grid;place-content:center;justify-items:center;gap:6px;text-align:center;color:#fff;background:linear-gradient(135deg,#3B82F6,#1D4ED8);border:0;padding:12px}
+.pf-gen i{font-size:3rem;line-height:1}.pf-gen strong{font-family:Poppins,system-ui,sans-serif}
+.pm-frame{width:100%;height:70vh;border:1px solid rgba(128,128,128,.3);border-radius:12px;background:#fff;display:block}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -180,7 +183,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <section>
  <div class="container">
   <h2 class="text-center fw-bold mb-2">Portofolio</h2>
-  <p class="text-center text-secondary mb-4">Contoh hasil koreksi Detectra. Klik kartu untuk melihat hasilnya.</p>
+  <p class="text-center text-secondary mb-4">Contoh hasil koreksi Detectra. Klik kartu untuk melihat penjelasan dan file hasilnya.</p>
   <div class="d-flex justify-content-center gap-2 flex-wrap mb-4" id="portFilter"></div>
   <div class="row g-4" id="portGrid"></div>
  </div>
@@ -228,6 +231,11 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
  <div class="modal-body p-0"><div id="galCar" class="carousel slide"></div><p id="galDesc" class="p-3 mb-0 small"></p></div>
 </div></div></div>
 
+<div class="modal fade" id="portModal" tabindex="-1" aria-labelledby="pmTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable"><div class="modal-content" style="border-radius:16px;overflow:hidden">
+ <div class="modal-header"><div><h5 class="modal-title mb-1" id="pmTitle"></h5><div id="pmMeta" class="d-flex gap-1 flex-wrap"></div></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+ <div class="modal-body"><h6 class="fw-bold">Penjelasan singkat</h6><p id="pmDesc"></p><h6 class="fw-bold">File hasil tugas</h6><div id="pmFile"></div></div>
+</div></div></div>
+
 <div class="modal fade" id="okModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content text-center p-4" style="border-radius:16px">
  <div class="display-3 text-success"><i class="bi bi-check-circle-fill"></i></div>
  <h4>Terima kasih, pesananmu sedang diproses</h4>
@@ -247,7 +255,7 @@ const LEVELS=["SMP","SMA","Kuliah"];
 const SERVICES={
  koreksi:{nama:"Koreksi Tugas",icon:"bi-pencil-square",
   sub:"Tugasmu diperiksa, lalu kamu menerima catatan revisi, penilaian, dan saran perbaikan.",
-  harga:{SMP:[12000,22000],SMA:[15000,30000],Kuliah:[20000,35000]},
+  harga:{SMP:[12000,22000],SMA:[15000,30000],Kuliah:[25000,50000]},
   paket:[
    ["Koreksi + saran perbaikan singkat","6–12 jam",["Koreksi ejaan, tata bahasa, dan kesalahan jawaban","Saran perbaikan singkat"]],
    ["Koreksi + komentar detail, nilai, dan cek ulang","12–24 jam",["Semua isi paket Basic","Komentar detail per bagian atau soal","Saran revisi yang terarah","Nilai beserta alasannya","1x cek ulang setelah kamu merevisi"]]],
@@ -255,21 +263,24 @@ const SERVICES={
 const JENIS={SMP:["PR","Esai","Laporan sederhana","Ringkasan"],SMA:["Makalah","Esai","Laporan praktikum","Tugas bahasa"],Kuliah:["Jurnal","Laporan lab","Esai ilmiah","Makalah"]};
 
 /* Portofolio: contoh hasil koreksimu.
-   Tiap blok = 1 kartu. Ganti judul, deskripsi, dan jenisnya. Simpan foto di folder "Portofolio"
-   (nama bebas, boleh tanpa ekstensi: .jpg .png .jpeg .webp dicari otomatis). Tambah blok baru untuk kartu baru.
-   jenjang: "SMP", "SMA", atau "Kuliah"   paket: "Basic" atau "Lengkap" */
+   Tiap blok = 1 kartu. Ganti judul, jenjang, jenis, paket, dan penjelasan singkatnya.
+   file   = file hasil tugas yang bisa dilihat pengunjung. Simpan di folder "Portofolio".
+            PDF paling disarankan (tampil langsung di website). DOC/DOCX hanya bisa diunduh,
+            atau tampil langsung bila website sudah online. JPG/PNG juga bisa.
+   sampul = gambar sampul kartu (opsional, tanpa ekstensi juga boleh). Kalau kosong, sampul dibuat otomatis.
+   Tambah kartu baru dengan menyalin satu blok. jenjang: "SMP", "SMA", "Kuliah". paket: "Basic" atau "Lengkap". */
 const PORT=[
- {judul:"Judul portofolio 1",jenjang:"SMP",jenis:"Esai",paket:"Basic",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p1-1","Portofolio/p1-2","Portofolio/p1-3"]},
- {judul:"Judul portofolio 2",jenjang:"SMA",jenis:"Makalah",paket:"Lengkap",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p2-1","Portofolio/p2-2","Portofolio/p2-3"]},
- {judul:"Judul portofolio 3",jenjang:"Kuliah",jenis:"Jurnal",paket:"Lengkap",deskripsi:"Tulis deskripsi singkat: tugasnya apa dan apa yang kamu koreksi.",foto:["Portofolio/p3-1","Portofolio/p3-2","Portofolio/p3-3"]}];
+ {judul:"Judul portofolio 1",jenjang:"SMA",jenis:"Makalah",paket:"Lengkap",
+  deskripsi:"Tulis penjelasan singkat: tugasnya apa, apa yang kamu koreksi, dan saran apa yang kamu berikan.",
+  sampul:"Portofolio/sampul1",file:"Portofolio/contoh1.pdf"}];
 
 /* Testimoni: 10 kartu. Tiap kartu punya judul, jenjang, dan paket yang dipilih pelanggan,
    lalu 2 sampai 3 foto bukti chat di bawahnya. Simpan foto di folder "Review" dengan nama t1-1, t1-2, t1-3, t2-1, dst.
    Isi judul/jenjang/paket pada kartu yang sudah ada fotonya. Kartu yang fotonya kosong tampil sebagai kotak "segera hadir". */
 const TESTI=[
- {judul:"",jenjang:"",paket:"",foto:["Review/pembayaran1.jpg","Review/testimoni1.jpg","Review/t1-3"]},
- {judul:"",jenjang:"",paket:"",foto:["Review/pembayaran2.jpg","Review/order2.jpg","Review/t2-3"]},
- {judul:"",jenjang:"",paket:"",foto:["Review/pembayaran3.jpg","Review/testimoni3.jpg","Review/t3-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t1-1","Review/t1-2","Review/t1-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t2-1","Review/t2-2","Review/t2-3"]},
+ {judul:"",jenjang:"",paket:"",foto:["Review/t3-1","Review/t3-2","Review/t3-3"]},
  {judul:"",jenjang:"",paket:"",foto:["Review/t4-1","Review/t4-2","Review/t4-3"]},
  {judul:"",jenjang:"",paket:"",foto:["Review/t5-1","Review/t5-2","Review/t5-3"]},
  {judul:"",jenjang:"",paket:"",foto:["Review/t6-1","Review/t6-2","Review/t6-3"]},
@@ -397,17 +408,39 @@ function openGallery(o){
 }
 
 // Portofolio
+const fileExt=f=>((f||"").split("?")[0].match(/\.(\w+)$/)||[])[1]?.toLowerCase()||"";
+const fileIcon=f=>({pdf:"bi-file-earmark-pdf",doc:"bi-file-earmark-word",docx:"bi-file-earmark-word",jpg:"bi-file-earmark-image",jpeg:"bi-file-earmark-image",png:"bi-file-earmark-image",webp:"bi-file-earmark-image"}[fileExt(f)]||"bi-file-earmark-text");
+function fileViewer(file){
+ if(!file)return '<div class="testi-empty"><i class="bi bi-file-earmark fs-2"></i><span>File hasil belum ditambahkan</span></div>';
+ const ext=fileExt(file),url=encodeURI(file),name=file.split("/").pop();
+ const btns=`<div class="d-flex gap-2 flex-wrap mt-3"><a class="btn btn-primary" href="${esc(url)}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Buka di tab baru</a><a class="btn btn-outline-primary" href="${esc(url)}" download><i class="bi bi-download"></i> Unduh file</a></div>`;
+ let view;
+ if(ext==="pdf")view=`<iframe class="pm-frame" src="${esc(url)}" title="File hasil tugas"></iframe>`;
+ else if(["jpg","jpeg","png","webp"].includes(ext))view=`<img class="w-100 rounded" style="max-height:70vh;object-fit:contain;background:#111" src="${esc(url)}" alt="File hasil tugas">`;
+ else if((ext==="doc"||ext==="docx")&&/^https?:$/.test(location.protocol))view=`<iframe class="pm-frame" src="https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(new URL(file,location.href).href)}" title="File hasil tugas"></iframe>`;
+ else view=`<div class="est d-flex align-items-center gap-3"><i class="bi ${fileIcon(file)} fs-1 text-primary"></i><div><strong>${esc(name)}</strong><div class="small text-secondary">${ext==="doc"||ext==="docx"?"Dokumen Word tidak bisa ditampilkan langsung di sini. Buka atau unduh filenya.":"Buka atau unduh file untuk melihatnya."}</div></div></div>`;
+ return view+btns;
+}
+function openPort(p){
+ $("#pmTitle").textContent=p.judul;
+ $("#pmMeta").innerHTML=badge(p.jenjang,"primary")+badge(p.jenis,"info")+badge(p.paket?"Paket "+p.paket:"","warning");
+ $("#pmDesc").textContent=p.deskripsi||"";
+ $("#pmFile").innerHTML=fileViewer(p.file);
+ bootstrap.Modal.getOrCreateInstance("#portModal").show();
+}
+$("#portModal").addEventListener("hidden.bs.modal",()=>{$("#pmFile").innerHTML=""});
 let pf="Semua",portData=[];
 function renderPort(){
  $("#portFilter").innerHTML=["Semua",...LEVELS].map(x=>`<button class="btn btn-sm ${x==pf?"btn-primary":"btn-outline-primary"} rounded-pill px-3" data-f="${x}">${x}</button>`).join("");
  $$("#portFilter button").forEach(b=>b.onclick=()=>{pf=b.dataset.f;renderPort()});
  const list=portData.filter(x=>pf=="Semua"||x.p.jenjang==pf);
- $("#portGrid").innerHTML=list.length?list.map(({p,fotos},k)=>`<div class="col-md-6 col-lg-4"><div class="cardx pf d-flex flex-column" role="button" tabindex="0" data-k="${k}" aria-label="Lihat hasil: ${esc(p.judul)}">${fotos.length?`<img class="pf-cover" src="${esc(fotos[0])}" alt="${esc(p.judul)}">`:'<div class="pf-cover pf-none"><i class="bi bi-image fs-1"></i><span>Foto belum ditambahkan</span></div>'}<div class="d-flex gap-1 flex-wrap my-2">${badge(p.jenjang,"primary")}${badge(p.jenis,"info")}${badge(p.paket?"Paket "+p.paket:"","warning")}</div><h5>${esc(p.judul)}</h5><p class="small text-secondary pf-desc">${esc(p.deskripsi||"")}</p><span class="btn btn-outline-primary btn-sm mt-auto">Lihat contoh hasil${fotos.length>1?` (${fotos.length} foto)`:""}</span></div></div>`).join(""):'<p class="text-center text-secondary">Belum ada portofolio untuk pilihan ini.</p>';
- $$("#portGrid .pf").forEach(c=>{const {p,fotos}=list[+c.dataset.k];
-  const open=()=>openGallery({judul:p.judul,badges:badge(p.jenjang,"primary")+badge(p.jenis,"info")+badge(p.paket?"Paket "+p.paket:"","warning"),deskripsi:p.deskripsi,foto:fotos});
+ const cards=list.map(({p,cover},k)=>`<div class="col-md-6 col-lg-4"><div class="cardx pf d-flex flex-column" role="button" tabindex="0" data-k="${k}" aria-label="Lihat penjelasan dan file: ${esc(p.judul)}">${cover?`<img class="pf-cover" src="${esc(cover)}" alt="Sampul ${esc(p.judul)}">`:`<div class="pf-cover pf-gen"><i class="bi ${fileIcon(p.file)}"></i><strong>${esc(p.jenis||p.judul)}</strong><small>${esc(p.jenjang||"")}</small></div>`}<div class="d-flex gap-1 flex-wrap my-2">${badge(p.jenjang,"primary")}${badge(p.jenis,"info")}${badge(p.paket?"Paket "+p.paket:"","warning")}</div><h5>${esc(p.judul)}</h5><p class="small text-secondary pf-desc">${esc(p.deskripsi||"")}</p><span class="btn btn-outline-primary btn-sm mt-auto"><i class="bi bi-eye"></i> Lihat penjelasan dan file</span></div></div>`).join("");
+ const more=pf=="Semua"?'<div class="col-md-6 col-lg-4"><div class="testi-empty h-100" style="min-height:220px"><i class="bi bi-folder2-open fs-2"></i><span>Portofolio lainnya segera hadir</span></div></div>':"";
+ $("#portGrid").innerHTML=cards+more||'<p class="text-center text-secondary">Belum ada portofolio untuk pilihan ini.</p>';
+ $$("#portGrid .pf").forEach(c=>{const {p}=list[+c.dataset.k];const open=()=>openPort(p);
   c.onclick=open;c.onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();open()}}});
 }
-Promise.all(PORT.map(p=>probeAll(p.foto||[]))).then(r=>{portData=PORT.map((p,i)=>({p,fotos:r[i]}));renderPort()});
+Promise.all(PORT.map(p=>p.sampul?probe(p.sampul):Promise.resolve(null))).then(r=>{portData=PORT.map((p,i)=>({p,cover:r[i]}));renderPort()});
 
 // Testimoni
 function testiCards(items,showEmpty){
