@@ -48,6 +48,24 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 .wa-bubble{background:var(--card);border-radius:12px 12px 12px 4px;padding:10px 12px;margin-bottom:8px;font-size:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.12)}
 .wa-box .btn-outline-success{background:var(--card)}
 /* Testimoni dan portofolio */
+.testi-wrap{position:relative;padding:0 6px}
+.testi-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.testi-track::-webkit-scrollbar{display:none}
+.testi-slide{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;min-width:0}
+.testi-slide .cardx:hover{transform:none}
+.testi-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid rgba(128,128,128,.3);background:var(--card);color:var(--bs-body-color);display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:1.1rem}
+.testi-nav:hover{background:#3B82F6;color:#fff}
+.testi-nav:disabled{opacity:.35;pointer-events:none}
+.testi-nav.prev{left:-14px}.testi-nav.next{right:-14px}
+@media(max-width:991px){.testi-slide{flex-basis:calc((100% - 16px)/2)}}
+@media(max-width:575px){.testi-slide{flex-basis:88%}.testi-nav.prev{left:-6px}.testi-nav.next{right:-6px}}
+.testi-car{border-radius:12px;overflow:hidden;background:#111;border:1px solid rgba(128,128,128,.25)}
+.testi-car .carousel-item img{width:100%;height:340px;object-fit:contain;background:#111;cursor:zoom-in;display:block}
+.testi-car .carousel-indicators{margin-bottom:.4rem}
+.testi-car .carousel-control-prev,.testi-car .carousel-control-next{width:14%}
+.testi-car .carousel-control-prev-icon,.testi-car .carousel-control-next-icon{background-color:rgba(0,0,0,.55);border-radius:50%;background-size:55%;width:2rem;height:2rem}
+.testi-count{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;font-size:.75rem;padding:2px 9px;border-radius:20px;z-index:2}
+@media(max-width:575px){.testi-car .carousel-item img{height:320px}}
 .testi-photos{display:grid;gap:8px}
 .chat-th{aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid rgba(128,128,128,.25);cursor:zoom-in;padding:0;width:100%;transition:transform .2s}
 .chat-th:hover{transform:scale(1.04)}
@@ -131,7 +149,7 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
  <div class="container">
   <h2 class="text-center fw-bold mb-2">Testimoni</h2>
   <p class="text-center text-secondary mb-4">Percakapan dengan pelanggan Detectra.</p>
-  <div class="row g-4" id="homeTesti"></div>
+  <div id="homeTesti"></div>
   <div class="text-center mt-4"><a href="#testimoni" class="btn btn-outline-primary">Lihat semua testimoni</a></div>
  </div>
 </section>
@@ -194,8 +212,8 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
 <section class="bg-body-secondary">
  <div class="container">
   <h2 class="text-center fw-bold mb-2">Testimoni</h2>
-  <p class="text-center text-secondary mb-4">Percakapan dengan pelanggan Detectra. Klik foto untuk memperbesar.</p>
-  <div class="row g-4" id="testiGrid"></div>
+  <p class="text-center text-secondary mb-4">Satu kartu = satu transaksi. Tekan panah di samping untuk melihat testimoni lain, panah di foto untuk bukti chat lainnya, klik foto untuk memperbesar.</p>
+  <div id="testiGrid"></div>
  </div>
 </section>
 </main>
@@ -464,20 +482,39 @@ function renderPort(){
 }
 Promise.all(PORT.map(p=>p.sampul?probe(p.sampul):Promise.resolve(null))).then(r=>{portData=PORT.map((p,i)=>({p,cover:r[i]}));renderPort()});
 
-// Testimoni
-function testiCards(items,showEmpty){
- return items.map(({t,i,fotos})=>`<div class="col-md-6 col-lg-4"><div class="cardx testi" data-i="${i}"><h5 class="mb-2">${esc(t.judul||"Testimoni "+(i+1))}</h5><div class="d-flex gap-1 flex-wrap mb-3">${badge(t.jenjang,"primary")}${badge(t.paket?"Paket "+t.paket:"","warning")}</div>${fotos.length?`<div class="testi-photos" style="grid-template-columns:repeat(${Math.max(fotos.length,2)},1fr)">${fotos.map((s,k)=>`<button type="button" class="chat-th" data-k="${k}" aria-label="Perbesar foto ${k+1} dari testimoni ${i+1}"><img src="${esc(s)}" alt="Bukti chat ${k+1}"></button>`).join("")}</div>`:'<div class="testi-empty"><i class="bi bi-chat-square-text fs-2"></i><span>Bukti chat segera hadir</span></div>'}</div></div>`).join("");
+// Testimoni: 1 transaksi = 1 slider (carousel) di dalam kartunya
+function testiCards(items,pre){
+ return items.map(({t,i,fotos})=>{const id=`tc-${pre}-${i}`,n=fotos.length;
+  const slider=n?`<div class="testi-car position-relative"><div id="${id}" class="carousel slide" aria-label="Foto testimoni ${i+1}">${n>1?`<span class="testi-count"><span data-cnt>1</span>/${n}</span><div class="carousel-indicators">${fotos.map((_,k)=>`<button type="button" data-bs-target="#${id}" data-bs-slide-to="${k}" ${k?"":'class="active" aria-current="true"'} aria-label="Foto ${k+1}"></button>`).join("")}</div>`:""}<div class="carousel-inner">${fotos.map((s,k)=>`<div class="carousel-item${k?"":" active"}"><img src="${esc(s)}" alt="Bukti chat ${k+1} dari ${n}, testimoni ${i+1}" title="Klik untuk memperbesar"></div>`).join("")}</div>${n>1?`<button class="carousel-control-prev" type="button" data-bs-target="#${id}" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Sebelumnya</span></button><button class="carousel-control-next" type="button" data-bs-target="#${id}" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Berikutnya</span></button>`:""}</div></div>`:'<div class="testi-empty"><i class="bi bi-chat-square-text fs-2"></i><span>Bukti chat segera hadir</span></div>';
+  return `<div class="testi-slide"><div class="cardx testi" data-i="${i}"><h5 class="mb-2">${esc(t.judul||"Testimoni "+(i+1))}</h5><div class="d-flex gap-1 flex-wrap mb-3">${badge(t.jenjang,"primary")}${badge(t.paket?"Paket "+t.paket:"","warning")}</div>${slider}</div></div>`}).join("");
+}
+function mountTesti(box,items,pre){
+ box.innerHTML=`<div class="testi-wrap"><button type="button" class="testi-nav prev" aria-label="Sebelumnya"><i class="bi bi-chevron-left"></i></button><div class="testi-track">${testiCards(items,pre)}</div><button type="button" class="testi-nav next" aria-label="Berikutnya"><i class="bi bi-chevron-right"></i></button></div>`;
+ const tr=$(".testi-track",box),pv=$(".prev",box),nx=$(".next",box);
+ const upd=()=>{pv.disabled=tr.scrollLeft<=4;nx.disabled=tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4;const hide=tr.scrollWidth<=tr.clientWidth+4;pv.hidden=nx.hidden=hide};
+ const step=()=>{const f=tr.firstElementChild;return f?f.getBoundingClientRect().width+16:tr.clientWidth};
+ pv.onclick=()=>tr.scrollBy({left:-step(),behavior:"smooth"});nx.onclick=()=>tr.scrollBy({left:step(),behavior:"smooth"});
+ tr.addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);setTimeout(upd,50);
+ wireTesti(box,items);
 }
 function wireTesti(box,items){
- $$(".testi",box).forEach(c=>{const it=items.find(x=>x.i==+c.dataset.i),t=it.t;
-  $$(".chat-th",c).forEach(b=>b.onclick=()=>openGallery({judul:t.judul||"Testimoni "+(it.i+1),badges:badge(t.jenjang,"primary")+badge(t.paket?"Paket "+t.paket:"","warning"),foto:it.fotos,start:+b.dataset.k}))});
+ $$(".testi",box).forEach(c=>{const it=items.find(x=>x.i==+c.dataset.i),t=it.t,car=$(".carousel",c);if(!car)return;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cr=new bootstrap.Carousel(car,{interval:6000,touch:false,ride:false,pause:"hover",wrap:true});
+  if(!reduce&&car.querySelectorAll(".carousel-item").length>1){ // geser otomatis hanya saat kartu terlihat, mulai bergantian
+   const delay=(+c.dataset.i%5)*1100;let tm;
+   new IntersectionObserver(es=>es.forEach(e=>{clearTimeout(tm);if(e.isIntersecting)tm=setTimeout(()=>cr.cycle(),delay);else cr.pause()}),{threshold:.6}).observe(c);
+   car.addEventListener("focusin",()=>cr.pause())}
+  const cnt=$("[data-cnt]",c);
+  car.addEventListener("slide.bs.carousel",e=>{if(cnt)cnt.textContent=e.to+1});
+  $$(".carousel-item img",c).forEach((im,k)=>im.onclick=()=>openGallery({judul:t.judul||"Testimoni "+(it.i+1),badges:badge(t.jenjang,"primary")+badge(t.paket?"Paket "+t.paket:"","warning"),foto:it.fotos,start:k}))});
 }
 Promise.all(TESTI.map(t=>probeAll(t.foto||[]))).then(r=>{
  const all=TESTI.map((t,i)=>({t,i,fotos:r[i]}));
- $("#testiGrid").innerHTML=testiCards(all);wireTesti($("#testiGrid"),all);
+ mountTesti($("#testiGrid"),all,"g");
  const filled=all.filter(x=>x.fotos.length).slice(0,3);
  $("#homeRev").hidden=!filled.length;
- $("#homeTesti").innerHTML=testiCards(filled);wireTesti($("#homeTesti"),filled);
+ mountTesti($("#homeTesti"),filled,"h");
 });
 
 // Router: tiap menu menampilkan halamannya sendiri
