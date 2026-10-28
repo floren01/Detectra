@@ -240,7 +240,13 @@ footer a{color:#cbd5e1;text-decoration:none}footer a:hover{color:var(--amber)}
  <div class="display-3 text-success"><i class="bi bi-check-circle-fill"></i></div>
  <h4>Terima kasih, pesananmu sedang diproses</h4>
  <p class="mb-1">Kode order kamu:</p><h3 id="okKode" class="text-primary"></h3>
- <p class="small text-secondary">Sebutkan kode ini saat menghubungi admin. Jika file belum terlampir, kirim manual lewat chat yang terbuka.</p>
+ <p class="small text-secondary">Sebutkan kode ini saat menghubungi admin.</p>
+ <div id="okFile" class="alert alert-warning text-start small d-none">
+  <strong><i class="bi bi-paperclip"></i> File belum terkirim otomatis.</strong>
+  <div id="okFileName" class="my-1 fw-semibold"></div>
+  <div id="okFileHow">Di chat WhatsApp yang terbuka, tekan ikon klip/<b>+</b> lalu pilih <b>Dokumen</b> atau <b>Galeri</b> dan pilih file ini.</div>
+  <button type="button" id="okShare" class="btn btn-success btn-sm mt-2 d-none"><i class="bi bi-whatsapp"></i> Kirim file lewat WhatsApp</button>
+ </div>
  <button class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
 </div></div></div>
 
@@ -272,7 +278,10 @@ const JENIS={SMP:["PR","Esai","Laporan sederhana","Ringkasan"],SMA:["Makalah","E
 const PORT=[
  {judul:"Koreksi Daftar Kosakata TOEIC (601–750)",jenjang:"Kuliah",jenis:"Kosakata TOEIC",paket:"Lengkap",
   deskripsi:"Koreksi daftar kosakata TOEIC nomor 601–750 beserta arti, jenis kata (PoS), dan contoh kalimatnya. 23 entri diperbaiki: arti diperjelas sesuai konteks dan contoh kalimat dibuat lebih alami. Di akhir dokumen ada catatan tambahan untuk beberapa kata. Bagian asli tidak diubah, hasil koreksi ditambahkan di bagian bawah.",
-  sampul:"Portofolio/sampul1.png",file:"Portofolio/porto1.pdf"}];
+  sampul:"Portofolio/sampul1.png",file:"Portofolio/porto1.pdf"},
+ {judul:"Koreksi Jawaban Manajemen Strategik",jenjang:"Kuliah",jenis:"Esai / Jawaban Uraian",paket:"Lengkap",
+  deskripsi:"Koreksi lembar jawaban tugas Manajemen Strategik (5 soal: Red Ocean vs Blue Ocean, strategi generik Porter, implementasi diferensiasi, PESTEL, dan Lima Kekuatan Porter). Jawaban asli dibiarkan utuh, lalu di bagian akhir ditambahkan bagian \"Saran Perbaikan\" yang menunjukkan masalah tiap jawaban beserta usulan revisinya.",
+  sampul:"Portofolio/sampul2.png",file:"Portofolio/porto2.pdf"}];
 
 /* Testimoni: 10 kartu. Tiap kartu punya judul, jenjang, dan paket yang dipilih pelanggan,
    lalu 2 sampai 3 foto bukti chat di bawahnya. Simpan foto di folder "Review" dengan nama t1-1, t1-2, t1-3, t2-1, dst.
@@ -346,19 +355,32 @@ function waGreeting(){
  return `Halo Detectra 👋\n\nSaya lihat website Detectra dan ingin tanya soal jasa koreksi tugas. Boleh dibantu?\n\n*Layanan yang saya lihat*\n${lv}\n\n*Pilihan paket*\n${pk}\n\n*Yang ingin saya konsultasikan*\nJenjang: \nJenis tugas: \nDeadline: \n\nTerima kasih 🙏`}
 function buildMsg(kode){const f=$("#file").files[0],S=SERVICES.koreksi,pi=PKG.indexOf($("#paket").value),dl=$("#deadline").value;
  const tgl=dl?new Date(dl+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}):"-";
- return `Halo Detectra 👋\nSaya ingin memesan jasa koreksi tugas.\n\n*Kode order:* ${kode}\n\n*Data pemesan*\nNama: ${$("#nama").value.trim()}\nKontak: ${$("#kontak").value.trim()}\n\n*Detail pesanan*\nJenjang: ${$("#jenjang").value}\nJenis tugas: ${$("#jenis").value}\nPaket: ${$("#paket").value} (${S.paket[pi][0]})\nEstimasi biaya: ${$("#estimasi").textContent}\nEstimasi selesai: ${S.paket[pi][1]}\nDeadline: ${tgl}\nFile: ${f?f.name+" (akan saya kirim di chat ini)":"-"}\nCatatan: ${$("#catatan").value.trim()||"-"}\n\nMohon konfirmasi ketersediaan, total biaya, dan cara pembayarannya ya. Terima kasih 🙏`}
-$$("[data-send]").forEach(btn=>btn.onclick=()=>{
+ return `Halo Detectra 👋\nSaya ingin memesan jasa koreksi tugas.\n\n*Kode order:* ${kode}\n\n*Data pemesan*\nNama: ${$("#nama").value.trim()}\nKontak: ${$("#kontak").value.trim()}\n\n*Detail pesanan*\nJenjang: ${$("#jenjang").value}\nJenis tugas: ${$("#jenis").value}\nPaket: ${$("#paket").value} (${S.paket[pi][0]})\nEstimasi biaya: ${$("#estimasi").textContent}\nEstimasi selesai: ${S.paket[pi][1]}\nDeadline: ${tgl}\nFile: ${f?f.name+" (saya lampirkan di chat ini)":"-"}\nCatatan: ${$("#catatan").value.trim()||"-"}\n\nMohon konfirmasi ketersediaan, total biaya, dan cara pembayarannya ya. Terima kasih 🙏`}
+let pendingFile=null;
+const canShareFile=f=>!!(f&&navigator.canShare&&navigator.canShare({files:[f]}));
+function afterSend(kode,f,sent){
+ const btn=$$("[data-send]");btn.forEach(b=>{b.disabled=false;if(b.dataset.old)b.innerHTML=b.dataset.old});
+ pendingFile=f&&!sent?f:null;
+ const box=$("#okFile");box.classList.toggle("d-none",!pendingFile);
+ if(pendingFile){$("#okFileName").textContent=pendingFile.name;$("#okShare").classList.toggle("d-none",!canShareFile(pendingFile))}
+ $("#okKode").textContent=kode;new bootstrap.Modal("#okModal").show();toast(sent?"Pesanan dan file terkirim.":"Pesanan berhasil dibuat.");
+ $("#orderForm").reset();$$("#orderForm .is-valid,#orderForm .is-invalid").forEach(e=>e.classList.remove("is-valid","is-invalid"));$("#fileInfo").textContent="";fillJenis();est()}
+$("#okShare").onclick=async()=>{if(!pendingFile)return;
+ try{await navigator.share({files:[pendingFile],title:"File tugas Detectra",text:"File tugas untuk Detectra"});$("#okFile").classList.add("d-none");toast("File dikirim.")}
+ catch(e){if(e.name!=="AbortError")toast("Gagal membagikan file. Lampirkan manual lewat WhatsApp.","danger")}};
+$$("[data-send]").forEach(btn=>btn.onclick=async()=>{
  const ok=["nama","kontak","jenjang"].map(id=>chk($("#"+id))).every(Boolean);
  if(!ok){toast("Lengkapi data yang wajib diisi.","danger");return}
- const kode="DTX-"+Math.random().toString(36).slice(2,8).toUpperCase(), msg=buildMsg(kode);
- const old=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner-border spinner-border-sm"></span> Memproses...';
- setTimeout(()=>{
-  const url=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
-  if(!window.open(url,"_blank"))location.href=url;
-  btn.disabled=false;btn.innerHTML=old;
-  $("#okKode").textContent=kode;new bootstrap.Modal("#okModal").show();toast("Pesanan berhasil dibuat.");
-  $("#orderForm").reset();$$("#orderForm .is-valid,#orderForm .is-invalid").forEach(e=>e.classList.remove("is-valid","is-invalid"));$("#fileInfo").textContent="";fillJenis();est();
- },1200)});
+ const kode="DTX-"+Math.random().toString(36).slice(2,8).toUpperCase(), msg=buildMsg(kode), f=$("#file").files[0]||null;
+ btn.dataset.old=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner-border spinner-border-sm"></span> Memproses...';
+ const url=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+ // HP: kirim file + teks langsung lewat menu Bagikan (pilih WhatsApp, lalu kontak Detectra)
+ if(canShareFile(f)){
+  try{await navigator.share({files:[f],text:msg+"\n\n(Kirim ke WhatsApp Detectra: 0857-1283-3094)"});afterSend(kode,f,true);return}
+  catch(e){if(e.name==="AbortError"){btn.disabled=false;btn.innerHTML=btn.dataset.old;return}}
+ }
+ // Komputer / browser tanpa dukungan: buka chat dengan teks, file dilampirkan manual
+ setTimeout(()=>{if(!window.open(url,"_blank"))location.href=url;afterSend(kode,f,false)},600)});
 
 // WhatsApp: widget "ada yang bisa dibantu"
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
